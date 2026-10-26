@@ -1,0 +1,23 @@
+!ys-0
+
+defn main():
+  say: ascending-primes():joins
+
+defn ascending-primes():
+  digits =: digits('123456789')
+  nums =:
+    for mask (1 .. 511):
+      number-for-mask(mask digits)
+  nums: .filter(prime? _):sort
+
+defn number-for-mask(mask digits):
+  s =:
+    for i (0 .. 8):
+      when bit-test(mask i):
+        digits.$i
+  s: .join():I
+
+defn prime?(n):
+  (n > 1) &&
+  range(2 n:sqrt:I.++)
+  .every?(\((n % _).?))

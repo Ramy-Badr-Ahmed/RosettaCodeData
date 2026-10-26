@@ -1,11 +1,11 @@
-REBOL [
+Rebol [
 	Title: "12x12 Multiplication Table"
 	URL: http://rosettacode.org/wiki/Print_a_Multiplication_Table
 ]
 
 size: 12
 
-; Because of REBOL's GUI focus, it doesn't really do pictured output,
+; Because of Rebol's GUI focus, it doesn't really do pictured output,
 ; so I roll my own. See Formatted_Numeric_Output for more
 ; comprehensive version:
 

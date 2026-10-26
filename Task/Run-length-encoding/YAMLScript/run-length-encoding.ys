@@ -1,0 +1,21 @@
+!ys-0
+
+dflt =: 'WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWBWWWWWWWWWWWWWW'
+
+defn main(text=dflt):
+  encoded =: text:encode
+  say: encoded
+  say: encoded:decode
+
+defn encode(s):
+  partition-by(identity s)
+    .mapv(\("$(_.#)$(first _)"))
+    .join()
+
+defn decode(s):
+  parts =:
+    for m s.re-seq(/(\d+)(\w)/):
+      n =: m.1:I
+      ch =: m.2
+      ch *: n
+  str: parts*

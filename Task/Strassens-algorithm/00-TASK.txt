@@ -12,9 +12,11 @@ While practical implementations of Strassen's algorithm usually switch to standa
 
 ;Related task
 :* [[Matrix multiplication]]
-
+:* [[Determinant and permanent]]
 
 ;See also
 :* [[wp:Strassen algorithm|Wikipedia article]]
 <br><br>
+
+
 

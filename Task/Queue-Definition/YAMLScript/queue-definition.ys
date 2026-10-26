@@ -1,0 +1,35 @@
+!ys-0
+
+defn main():
+  q =: make-queue()
+  say: q:q-empty?
+  push: q 1
+  push: q 2
+  push: q 3
+  say: q:q-empty?
+  say: q:pop
+  say: q:pop
+  push: q 4
+  say: q:pop
+  say: q:pop
+  say: q:q-empty?
+  try:
+    pop: q
+    catch Exception e: !say
+      "Error: $(ex-message(e))"
+
+defn make-queue():
+  atom([])
+
+defn push(q x):
+  swap q: \(_.conj(x))
+
+defn pop(q):
+  v =: q.@
+  when v:empty?:
+    throw: Exception.new('pop from empty queue')
+  swap q: \(_.subvec(1))
+  first: v
+
+defn q-empty?(q):
+  empty?: q.@

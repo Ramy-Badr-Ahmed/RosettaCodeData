@@ -1,9 +1,9 @@
 {{language|Quackery}}
 {{language programming paradigm|Concatenative}}
 {{language programming paradigm|Imperative}}
-Quackery is an open-source, lightweight, entry-level concatenative language for educational and recreational programming.
+Quackery is an open-source, lightweight, entry-level concatenative language for educational and recreational programming, and an extensible compiler for a hypothetical processor, the Quackery Engine.
 
-It is coded as a Python 3 function in under 48k of Pythonscript, about half of which is a string of Quackery code.
+It is coded as a Python 3 function in about 50k of Pythonscript, about half of which is a string of Quackery code.
 
 The Quackery GitHub repository, which includes the Quackery manual "The Book of Quackery" as a pdf, is at [https://github.com/GordonCharlton/Quackery github.com/GordonCharlton/Quackery].
 
@@ -27,8 +27,28 @@ Everything is code except when it is data. When <code>do</code> does a number, t
 
 Conceptually, the Quackery engine is a stack based processor which does not have direct access to physical memory but has a memory management co-processor that intermediates, that takes care of the nests and bignums, provides pointers to the Quackery engine CPU on request, and garbage collects continuously.
 
-Quackery is not intended to be a super-fast enterprise-level language; it is intended as a fun programming project straight out of a textbook. (The textbook is included in the download.)
+Quackery is not intended to be a super-fast enterprise-level language; it is intended as an exploration of a novel architecture, and a fun programming project straight out of a textbook. (The textbook is included in the download.)
 
-If your language supports bignums, first-class functions and dynamic arrays of bignums, functions and dynamic arrays, and has automatic garbage collection, and if you can code depth-first traversal of a tree you can implement Quackery in your preferred language with reasonable ease, and modify it as you please.
+Why not try your hand at one of the [[Tasks not implemented in Quackery]].
 
-Or try your hand at one of the [[Tasks not implemented in Quackery]].
+== Selected Quackery Examples ==
+
+Rosetta Code has hundreds of Quackery examples. Here’s a curated set that showcases some of Quackery's strengths:
+
+* [[99 bottles of beer#Quackery|99 bottles of beer]] Shows simple, readable control flow and output.
+* [[Gosper's hack#Quackery|Gosper's hack]] A nifty one-liner.
+* [[Temperature conversion#Quackery|Temperature conversion]] Co-operative brevity.
+* [[Balanced brackets#Quackery|Balanced brackets]] Demonstrates natural stack use for classic problems.
+* [[Loops/Increment loop index within loop body#Quackery|Increment loop index within loop body]] You want a loop that's indexed ''and'' indefinite? Here's how.
+* [[Quine#Quackery|Quine]] Illustrates code-as-data and quotation handling.
+* [[Bacon cipher#Quackery|Bacon cipher]] Highlights clear text manipulation with minimal code.
+* [[Permutations#Quackery|Permutations]] Uses recursion and stack shuffling expressively.
+* [[Sorting algorithms/Insertion sort#Quackery|Insertion sort]] Demonstrates some built-in higher-order functions.
+* [[Higher-order functions#Quackery|Higher-order functions]] Defining and using fold, map, and filter.
+* [[Conway's Game of Life#Quackery|Conway's Game of Life]] Handles structured simulation with clarity.
+* [[Execute Brain****#Quackery|Brainf*** interpreter]] Demonstrates interpreter-building and extensibility.
+* [[Dinesman's multiple-dwelling problem#Quackery|Dinesman's multiple-dwelling problem]] Crafting a Domain Specific Language.
+
+== The Task that Nearly Broke the Author ==
+
+* [[Zeckendorf arithmetic#Quackery|Zeckendorf arithmetic]] Forget everything you thought you knew about arithmetic…

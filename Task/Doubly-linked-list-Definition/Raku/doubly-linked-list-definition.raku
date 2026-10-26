@@ -4,29 +4,29 @@ role DLElem[::T] {
     has T $.payload = T;
 
     method pre-insert(T $payload) {
-	die "Can't insert before beginning" unless $!prev;
-	my $elem = ::?CLASS.new(:$payload);
-	$!prev.next = $elem;
-	$elem.prev = $!prev;
-	$elem.next = self;
-	$!prev = $elem;
-	$elem;
+        die "Can't insert before beginning" unless $!prev;
+        my $elem = ::?CLASS.new(:$payload);
+        $!prev.next = $elem;
+        $elem.prev = $!prev;
+        $elem.next = self;
+        $!prev = $elem;
+        $elem;
     }
 
     method post-insert(T $payload) {
-	die "Can't insert after end" unless $!next;
-	my $elem = ::?CLASS.new(:$payload);
-	$!next.prev = $elem;
-	$elem.next = $!next;
-	$elem.prev = self;
-	$!next = $elem;
-	$elem;
+        die "Can't insert after end" unless $!next;
+        my $elem = ::?CLASS.new(:$payload);
+        $!next.prev = $elem;
+        $elem.next = $!next;
+        $elem.prev = self;
+        $!next = $elem;
+        $elem;
     }
 
     method delete {
-	die "Can't delete a sentinel" unless $!prev and $!next;
-	$!next.prev = $!prev;
-	$!prev.next = $!next;	# conveniently returns next element
+        die "Can't delete a sentinel" unless $!prev and $!next;
+        $!next.prev = $!prev;
+        $!prev.next = $!next;	# conveniently returns next element
     }
 }
 
@@ -35,10 +35,10 @@ role DLList[::DLE] {
     has DLE $.last;
 
     submethod BUILD {
-	$!first = DLE.new;
-	$!last = DLE.new;
-	$!first.next = $!last;
-	$!last.prev = $!first;
+        $!first = DLE.new;
+        $!last = DLE.new;
+        $!first.next = $!last;
+        $!last.prev = $!first;
     }
 
     method list { ($!first.next, *.next ...^ !*.next).map: *.payload }
@@ -58,3 +58,4 @@ $dll.last.pre-insert(42);
 
 say $dll.list;     # 0 1 2 40 41 42
 say $dll.reverse;  # 42 41 40 2 1 0
+

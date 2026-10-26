@@ -1,0 +1,18 @@
+!ys-0
+
+defn main(limit=50):
+  say: primes-up-to(limit):joins
+  say: "next after $limit: $next-prime(limit.++)"
+
+defn primes-up-to(limit):
+  filter prime?: 2 .. limit
+
+defn next-prime(n):
+  if n:prime?:
+    n
+    recur(n.++)
+
+defn prime?(n):
+  (n > 1) &&
+  range(2 n:sqrt:I.++)
+  .every?(\((n % _).?))

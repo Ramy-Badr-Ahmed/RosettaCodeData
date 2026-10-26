@@ -10,13 +10,13 @@ Numbers(n)
     ^ Array.allocate(n).populate::(int n => n)
 }
 
-public program()
+public Program()
 {
     var numbers := Numbers(N);
     Combinator.new(M, numbers).forEach::(row)
     {
-        console.printLine(row.toString())
+        Console.printLine(row.toString())
     };
 
-    console.readChar()
+    Console.readChar()
 }

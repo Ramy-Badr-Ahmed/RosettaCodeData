@@ -1,4 +1,4 @@
-REBOL [
+Rebol [
     Title: "Mutual Recursion"
     URL: http://rosettacode.org/wiki/Mutual_Recursion
 	References: [http://en.wikipedia.org/wiki/Hofstadter_sequence#Hofstadter_Female_and_Male_sequences]

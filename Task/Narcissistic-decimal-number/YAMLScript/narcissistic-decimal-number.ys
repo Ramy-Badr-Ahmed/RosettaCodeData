@@ -1,0 +1,26 @@
+!ys-0
+
+defn main(count=20):
+  narcs =:
+    filter narcissistic?:
+      iterate inc: 0
+  say: take(count narcs):joins
+
+defn digits(n):
+  loop n n, ds []:
+    if n == 0:
+      then: ds
+      else: recur((n // 10) ds.conj(n % 10))
+
+defn narcissistic?(n):
+  raw =: n:digits
+  ds =:
+    if raw:empty?:
+      +[0]
+      raw
+  m =: ds.#
+  psum =:
+    reduce _ 0 ds:
+      fn(acc d):
+        add: acc pow(d m)
+  n ==: psum

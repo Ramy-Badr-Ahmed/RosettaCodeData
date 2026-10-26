@@ -1,9 +1,9 @@
 import extensions;
 
-public program()
+public Program()
 {
-    var A := Integer.new();
-    var B := Integer.new();
+   var A := Integer.new();
+   var B := Integer.new();
 
-    console.loadLine(A,B).printLine(A + B)
+   Console.loadLine(A,B).printLine(A + B)
 }

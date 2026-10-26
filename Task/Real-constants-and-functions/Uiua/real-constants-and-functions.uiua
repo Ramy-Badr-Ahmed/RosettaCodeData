@@ -1,0 +1,10 @@
+x ← 2.5
+π     # pi
+√x    # sqrt
+e     # e
+ₑ x   # natural logarithm
+ₑ₁₀ x # logarithm to base 10
+⌵ x   # absolute value
+⌊x    # floor
+⌈x    # ceiling
+ⁿ 3 x # power - x to power 3

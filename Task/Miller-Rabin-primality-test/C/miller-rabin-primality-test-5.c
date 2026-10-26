@@ -35,3 +35,4 @@ int is_prime(ulong N) {
 int main(void){
 	return is_prime(8193145868754512737);
 }
+

@@ -1,4 +1,4 @@
-REBOL [
+Rebol [
     Title: "Array Callback"
     URL: http://rosettacode.org/wiki/Apply_a_callback_to_an_Array
 ]

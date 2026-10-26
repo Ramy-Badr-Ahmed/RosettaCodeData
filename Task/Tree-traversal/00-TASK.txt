@@ -1,3 +1,5 @@
+[[Category:Recursion]]
+
 ;Task:
 Implement a binary tree where each node carries an integer, &nbsp; and implement:
 :::* &nbsp; pre-order,
@@ -27,3 +29,4 @@ The correct output should look like this:
 ;See also:
 * &nbsp; Wikipedia article: &nbsp; [[wp:Tree traversal|Tree traversal]].
 <br><br>
+

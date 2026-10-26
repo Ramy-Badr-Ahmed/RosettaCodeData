@@ -1,4 +1,4 @@
-REBOL [
+Rebol [
 	Title: "Textual User Input"
 	URL: http://rosettacode.org/wiki/User_Input_-_text
 ]

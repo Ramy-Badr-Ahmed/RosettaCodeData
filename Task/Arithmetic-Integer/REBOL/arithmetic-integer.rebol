@@ -1,4 +1,4 @@
-REBOL [
+Rebol [
 	Title: "Integer"
 	URL: http://rosettacode.org/wiki/Arithmetic/Integer
 ]

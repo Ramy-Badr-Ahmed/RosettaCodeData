@@ -59,17 +59,17 @@ extension encryptOp
         = new Encrypting(26 - key, self).summarize(new StringWriter());
 }
 
-public program()
+public Program()
 {
-    console.printLine("Original text :",TestText);
+    Console.printLine("Original text :",TestText);
 
     var encryptedText := TestText.encrypt(Key);
 
-    console.printLine("Encrypted text:",encryptedText);
+    Console.printLine("Encrypted text:",encryptedText);
 
     var decryptedText := encryptedText.decrypt(Key);
 
-    console.printLine("Decrypted text:",decryptedText);
+    Console.printLine("Decrypted text:",decryptedText);
 
-    console.readChar()
+    Console.readChar()
 }

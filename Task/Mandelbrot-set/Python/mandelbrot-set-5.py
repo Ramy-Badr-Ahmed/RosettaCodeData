@@ -10,19 +10,29 @@ y = np.linspace(0, 2 * h / d, num=h+1)
 A, B = np.meshgrid(x - 1, y - h / d)
 C = 2.0 * (A + B * 1j) - 0.5
 
-Z, dZ = np.zeros_like(C), np.zeros_like(C)
-D, S, T = np.zeros(C.shape), np.zeros(C.shape), np.zeros(C.shape)
+def iteration(C):
+    S, T = np.zeros(C.shape), np.zeros(C.shape)
+    Z, dZ = np.zeros_like(C), np.zeros_like(C)
 
-for k in range(n):
-    M = abs(Z) < r
-    S[M], T[M] = S[M] + np.exp(- abs(Z[M])), T[M] + 1
-    Z[M], dZ[M] = Z[M] ** 2 + C[M], 2 * Z[M] * dZ[M] + 1
+    def iterate1(C, S, T, Z, dZ):
+        S, T = S + np.exp(- abs(Z)), T + 1
+        Z, dZ = Z * Z + C, 2 * Z * dZ + 1
+        return S, T, Z, dZ
+
+    for i in range(0, n, 1):
+        M = abs(Z) < r
+        S[M], T[M], Z[M], dZ[M] = iterate1(C[M], S[M], T[M], Z[M], dZ[M])
+
+    return S, T, Z, dZ
+
+S, T, Z, dZ = iteration(C)
+D = np.zeros(C.shape)
 
 plt.imshow(S ** 0.1, cmap=plt.cm.twilight_shifted, origin="lower")
 plt.savefig("Mandelbrot_set_1.png", dpi=200)
 
 N = abs(Z) >= r  # normalized iteration count
-T[N] = T[N] - np.log2(np.log(np.abs(Z[N])) / np.log(r))
+T[N] = T[N] - np.log2(np.log(abs(Z[N])) / np.log(r))
 
 plt.imshow(T ** 0.1, cmap=plt.cm.twilight_shifted, origin="lower")
 plt.savefig("Mandelbrot_set_2.png", dpi=200)

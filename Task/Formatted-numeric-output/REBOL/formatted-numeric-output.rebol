@@ -1,9 +1,9 @@
-REBOL [
+Rebol [
 	Title: "Formatted Numeric Output"
 	URL: http://rosettacode.org/wiki/Formatted_Numeric_Output
 ]
 
-; REBOL has no built-in facilities for printing pictured output.
+; Rebol has no built-in facilities for printing pictured output.
 ; However, it's not too hard to cook something up using the
 ; string manipulation facilities.
 

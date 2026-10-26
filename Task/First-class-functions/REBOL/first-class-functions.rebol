@@ -1,4 +1,4 @@
-REBOL [
+Rebol [
 	Title: "First Class Functions"
 	URL: http://rosettacode.org/wiki/First-class_functions
 ]

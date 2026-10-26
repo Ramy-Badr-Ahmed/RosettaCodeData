@@ -1,10 +1,7 @@
 # Run Length Encoding and Decoding
 
+Rle ← ⌅(
+  /◇⊂⍚⊂°⋕°▽
+| ▽⊃⊜⋕(♭⊜∘¬)⊸∊+@0⇡10)
 "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWBWWWWWWWWWWWWWW"
-Split ← ⇌∧(:⊃(⊂□↙)↘)≡/-◫2⊂¯1⊙⊙{} # Use the indexes to cut the string.
-Rle ← setinv(
-  /◇⊂⊜(□⊂⊃(°⋕⧻|⊢))+1⊛.
-| ∧(⊂/⊂↯⋕◇⊃↘↙¯1):Split⊚≥@A.
-)
-
-&p⨬("oops"|"good")≍&p.°Rle&p.⊸Rle&p.
+&p⨬("oops"|"good")≍⊸&p°Rle⊸&p⊸Rle⊸&p

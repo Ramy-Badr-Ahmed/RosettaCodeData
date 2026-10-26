@@ -1,22 +1,68 @@
-/*REXX program computes the factorial of a  non─negative integer, and it automatically  */
-/*────────────────────── adjusts the number of decimal digits to accommodate the answer.*/
-numeric digits 99                                /*99 digits initially,  then expanded. */
-parse arg n                                      /*obtain optional argument from the CL.*/
-if n=''                   then call er  'no argument specified'
-if arg()>1 | words(n)>1   then call er  'too many arguments specified.'
-if \datatype(n,'N')       then call er  "argument isn't numeric: "          n
-if \datatype(n,'W')       then call er  "argument isn't a whole number: "   n
-if n<0                    then call er  "argument can't be negative: "      n
-!= 1                                             /*define the factorial product (so far)*/
-         do j=2 to n;    !=!*j                   /*compute  the factorial the hard way. */
-         if pos(.,!)==0  then iterate            /*is the  !  in exponential notation?  */
-         parse var ! 'E' digs                    /*extract exponent of the factorial,   */
-         numeric digits  digs  +  digs % 10      /*  ··· and increase it by ten percent.*/
-         end   /*j*/                             /* [↑]  where da rubber meets da road. */
-!= !/1                                           /*normalize the factorial product.     */
-say n'!  is  ['length(!) "digits]:"              /*display number of digits in factorial*/
-say                                              /*add some whitespace to the output.   */
-say !                                            /*display the factorial product ──►term*/
-exit                                             /*stick a fork in it,  we're all done. */
-/*──────────────────────────────────────────────────────────────────────────────────────*/
-er:    say;      say '***error!***';      say;       say arg(1);      say;         exit 13
+-- 12 Jun 2026
+include Setting
+
+say 'FACTORIAL'
+say version
+say
+call First20
+call Timer 'r'
+call Imperative 10, '1 13 71 450 3249 25206 205022 1723508 14842907 130202808'
+call Timer 'r'
+if pos('Regina',version) > 0 then
+   call Recursive 10, '1 13 71 450 3249 25206 205022'
+else
+   call Recursive 10, '1 13 71 450 3249'
+call Timer 'r'
+call Imperative 100000,'1 13 71 450 3249 25206'
+call Timer 'r'
+exit
+
+First20:
+say 'First 20 FactorialS...'
+numeric digits 30
+do n = 1 to 20
+   say n'! =' Fact(n)
+end
+say
+return
+
+Imperative:
+arg d,p
+numeric digits d
+say 'Imperative in' d 'digits precision...'
+do i = 1 to Words(p)
+   call Time('r'); f = Word(p,i); h = Fact(f)
+   parse var h 'E' e
+   if e = '' then
+      say Right(f'!',10) 'has exact' Right(Length(h),9) 'digits'
+   else
+      say Right(f'!',10) 'has about' Right(e+1,9) 'digits'
+end
+say
+return
+
+Recursive:
+arg d,p
+numeric digits d
+say 'Recursive in' d 'digits precision...'
+do i = 1 to Words(p)
+   call Time('r'); f = Word(p,i); h = Recurs(f)
+   parse var h 'E' e
+   if e = '' then
+      say Right(f'!',10) 'has exact' Right(Length(h),9) 'digits'
+   else
+      say Right(f'!',10) 'has about' Right(e+1,9) 'digits'
+end
+say
+return
+
+Recurs:
+procedure
+arg xx
+if xx = 0 then
+   return 1
+else
+   return xx*Recurs(xx-1)
+
+-- Timer Fact
+include Math

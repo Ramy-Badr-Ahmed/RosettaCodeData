@@ -1,7 +1,6 @@
-fi1=fi2=fi3=1 # FIB Russia rextester.com/FEEJ49204
-for da in range(1, 88): # Danilin
-    print("."*(20-len(str(fi3))), end=' ')
-    print(fi3)
-    fi3 = fi2+fi1
-    fi1 = fi2
-    fi2 = fi3
+fibseq = [1,1,]
+fiblength = 21
+for x in range(1,fiblength-1):
+   xcount = fibseq[x-1] + fibseq[x]
+   fibseq.append(xcount)
+print(xcount)

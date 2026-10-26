@@ -1,0 +1,16 @@
+!ys-0
+
+defn main():
+  each n (2 .. 100000):
+    when descending?(n) && prime?(n):
+      say: n
+
+defn descending?(n):
+  s =: n:S
+  every? _ partition(2 1 s):
+    fn(pair): compare(pair.0 pair.1) > 0
+
+defn prime?(n):
+  (n > 1) &&
+  range(2 n:sqrt:I.++)
+  .every?(\((n % _).?))

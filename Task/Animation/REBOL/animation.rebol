@@ -1,4 +1,4 @@
-REBOL [
+Rebol [
 	Title: "Basic Animation"
 	URL: http://rosettacode.org/wiki/Basic_Animation
 ]

@@ -1,9 +1,9 @@
-rebol [
+Rebol [
     Title: "Classes"
     URL: http://rosettacode.org/wiki/Classes
 ]
 
-; Objects are derived from the base 'object!' type. REBOL uses a
+; Objects are derived from the base 'object!' type. Rebol uses a
 ; prototyping object system, so any object can be treated as a class,
 ; from which to derive others.
 

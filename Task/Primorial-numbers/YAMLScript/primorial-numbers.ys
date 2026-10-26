@@ -1,0 +1,25 @@
+!ys-0
+
+# Primorial(n) is the product of the first n primes. Reduce with a 1N
+# (bigint) seed so the products stay exact as they grow large.
+
+defn main():
+  say: 'First ten primorial numbers:'
+  each n (0 .. 9):
+    say: "primorial($n) = $(primorial(n))"
+
+  say:
+  say: 'Number of digits in primorial(n):'
+  each n [10 100 1000 10000 100000]:
+    digits =: primorial(n):S.#
+    say: "primorial($n) has $digits digits"
+
+defn primorial(n):
+  reduce mul: 1N primes().take(n)
+
+defn prime?(n):
+  (n > 1) &&
+  range(2 n:sqrt:I.++)
+  .every?(\((n % _).?))
+defn primes():
+  filter prime?: iterate(inc 2)

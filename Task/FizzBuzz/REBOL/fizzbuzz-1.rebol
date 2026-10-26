@@ -1,4 +1,4 @@
-REBOL [
+Rebol [
 	Title: "FizzBuzz"
 	URL: http://rosettacode.org/wiki/FizzBuzz
 ]

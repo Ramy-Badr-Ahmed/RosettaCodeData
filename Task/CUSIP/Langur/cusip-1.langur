@@ -1,12 +1,10 @@
-val isCusip = fn(s) {
-    if s is not string or len(s) != 9 {
-        return false
-    }
+val isCusip = fn(s string) {
+    if len(s) != 9 : return false
 
-    val basechars = '0'..'9' ~ 'A'..'Z' ~ "*@#"
+    val basechars = '0'..'9' & 'A'..'Z' & "*@#"
 
     val sum = for[=0] i of 8 {
-        var v = index(s2s(s, i), basechars)
+        var v = index(basechars, by=s2s(s, of=i))
         if not v: return false
         v = v[1]-1
         if i div 2: v *= 2

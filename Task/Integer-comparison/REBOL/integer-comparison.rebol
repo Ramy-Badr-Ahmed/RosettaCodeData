@@ -1,4 +1,4 @@
-REBOL [
+Rebol [
 	Title: "Comparing Two Integers"
 	URL: http://rosettacode.org/wiki/Comparing_two_integers
 ]

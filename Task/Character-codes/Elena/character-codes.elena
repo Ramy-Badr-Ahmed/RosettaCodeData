@@ -1,9 +1,9 @@
 import extensions;
 
-public program()
+public Program()
 {
     var ch := $97;
 
-    console.printLine(ch);
-    console.printLine(ch.toInt())
+    Console.printLine(ch);
+    Console.printLine(ch.toInt())
 }

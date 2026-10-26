@@ -1,6 +1,6 @@
-REBOL [
+Rebol [
 	Title: "Retrieve Substring"
-	URL: http://rosettacode.org/wiki/Substring#REBOL
+	URL: http://rosettacode.org/wiki/Substring#Rebol
 ]
 
 s: "abcdefgh"  n: 2  m: 3  char: #"d"  chars: "cd"

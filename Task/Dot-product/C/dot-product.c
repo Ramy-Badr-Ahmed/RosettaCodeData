@@ -1,28 +1,14 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "arrays.h"
 
-int dot_product(int *, int *, size_t);
+#define fout_num(stream,prefix,number,suffix) fprintf(stream, "%s%+e%s", prefix, (double)number, suffix)
+#define out_num(number) fout_num(stdout,"",number,"")
 
-int
-main(void)
+int main(int argc, char** argv)
 {
-        int a[3] = {1, 3, -5};
-        int b[3] = {4, -2, -1};
+        vec(3,flt) a = { 1,  3, -5};
+        arr(3,flt) b = { 4, -2, -1};
 
-        printf("%d\n", dot_product(a, b, sizeof(a) / sizeof(a[0])));
+        out_num(dot3(a, b)); out_end();
 
-        return EXIT_SUCCESS;
-}
-
-int
-dot_product(int *a, int *b, size_t n)
-{
-        int sum = 0;
-        size_t i;
-
-        for (i = 0; i < n; i++) {
-                sum += a[i] * b[i];
-        }
-
-        return sum;
+        exit(EXIT_SUCCESS);
 }

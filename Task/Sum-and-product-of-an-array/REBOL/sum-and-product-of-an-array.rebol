@@ -1,4 +1,4 @@
-REBOL [
+Rebol [
     Title: "Sum and Product"
     URL: http://rosettacode.org/wiki/Sum_and_product_of_array
 ]

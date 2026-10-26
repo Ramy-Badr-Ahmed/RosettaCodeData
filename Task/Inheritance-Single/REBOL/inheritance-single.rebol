@@ -1,4 +1,4 @@
-REBOL [
+Rebol [
 	Title: "Inheritance"
 	URL: http://rosettacode.org/wiki/Inheritance
 ]

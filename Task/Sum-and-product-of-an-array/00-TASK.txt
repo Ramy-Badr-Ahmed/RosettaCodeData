@@ -1,4 +1,13 @@
+[[Category:Iteration]]
+
 ;Task:
 Compute the sum and product of an array of integers.
 <br><br>
 
+;Related task:
+* &nbsp; [[Array]]
+* &nbsp; [[Arrays]]
+* &nbsp; [[Vector]]
+* &nbsp; [[Dot product]]
+* &nbsp; [[Vector products]]
+<br><br>

@@ -9,7 +9,7 @@
 |gc=allowed
 |hopl=no
 }}
-M2000 is an interpreter running on its own Environment written in Visual Basic 6, as an open source project and can be found in GitHub[https://github.com/M2000Interpreter/Version9]. Current version is 12, revision 13. See [[M2000 Interpreter Implementation]]
+M2000 is an interpreter running on its own Environment written in Visual Basic 6, as an open source project and can be found in GitHub[https://github.com/M2000Interpreter/Environment]. Current version is 14, revision 8. See [[M2000 Interpreter Implementation]]
 {{language programming paradigm|Imperative}}
 {{language programming paradigm|Object-oriented}}
 {{Language programming paradigm|Event-driven}}
@@ -21,12 +21,68 @@ M2000 has two set of vocabularies, one with English identifiers and one with Gre
 
 M2000 start as an experimental interpreted language, using a Module in Module idea (like a Procedure in Procedure) where each inner Module is closed for modification, but open for expansion, by replacing code at run time. Source code executed as is, without second interpretation of a simple form, although block of code arranged for execution in a manner of consuming code (code which executed deleted, code in a loop kept as a copy for next iteration).  
 
+We can use BASIC type statement's. Although there are some differences. Like the FOR NEXT:
+<syntaxhighlight lang="vb">
+SET SWITCHES "+FOR"
+// WHY ? BECAUSE WHEN STEP IS POSITIVE (+1 HERE)
+// WE GET ITERATION IF START VALUE IS LESS OR EQUAL THE LAST VALUE
+FOR I=10 TO 0
+	PRINT "NEVER PRINT - IS LIKE BASIC"
+NEXT
+SET SWITCHES "+DIM"
+// WHY ? BECAUSE DIM MAKE AN ARRAY FROM 0 TO TOP VALUE (10)
+DIM A(10)=1
+PRINT LEN(A())=11, A(0), A(10), "BASIC"
+
+SET SWITCHES "-FOR"  ' THE DEFAULT
+// WHY ? BECAUSE EVERY TIME ITERATE FROM START VALUE TO END VALUE
+FOR I=10 TO 0
+	PRINT "ALWAYS PRINT - IS NOT LIKE BASIC"
+NEXT
+
+SET SWITCHES "-DIM"
+// WHY ? BECAUSE DIM MAKE AN ARRAY N (10) ITEMS
+DIM A(10)=1
+PRINT LEN(A())=10, A(0), A(9), "M2000"
+DIM B(0 TO 10)=1  ' WE CAN DEFINE MIN AND MAX INDEX (CAN BE NEGATIVE)
+PRINT LEN(B())=11, B(0), B(10), "M2000"
+</syntaxhighlight>
+
 Module's may be Global, or local to other modules. We can define global modules in a module, and all these definitions deleted at the end of module execution. Because we have to execute the definition of a module, we can select definition, or load definition before we call the module. Also modules can be part of object's of type Group. A module can't call itself unless we use Call module_name. The standard call is by using only the name of module. So from a module we can call local modules or global, but we can't call parent module (if isn't global). In a group we can call anything like a module plus the modules of the groups. 
+
+We can use labels and line numbers (each number is just a label). After a line number we can place statement. Static subs/functions have same scope as the module scope. Here SomethingElse() is like Module as a program, with own scope.
+
+<syntaxhighlight lang="vb">
+MODULE alfa {
+	FUNCTION SomethingElse(A, ZZ) {
+		=A/ZZ   ' WE CAN'T READ Z HERE
+	}	
+	000 READ X
+	001 Z=10
+	005 GOSUB alfa
+	010 COMPUTE(&X)
+	020 PRINT @MUL10(X), SomethingElse(@MUL10(X), Z)
+	030 IF X<20 THEN 10
+	040 GOSUB alfa
+	050 END
+	060 SUB COMPUTE(&A)
+	070 	A++
+	080 	Z++ // SIDE EFFECT
+	090 END SUB
+	100 FUNCTION MUL10(A)
+	110 	=A*Z
+	120 END FUNCTION
+alfa:
+	130 PRINT "-------------------------"
+	140 RETURN
+}
+alfa 14
+</syntaxhighlight>
 
 We can change a inner module at the calling of a module, see the example: We call inner Beta in two stages. At the second stage we change inner Theta with Theta2. This is the decoration of Beta with Theta as Theta2. This is a temporary decoration because Beta after execution erase any new identifier including Theta. So each time we call Beta, statement Module Theta make this module unless a decoration stop it.
 
 ====English Vocabulary====
-<syntaxhighlight lang="m2000 interpreter">Module Beta {
+<syntaxhighlight lang="vb">Module Beta {
       Module Theta (x){
             Print "This is Theta, we get x=";x
       }
@@ -38,8 +94,141 @@ Module Theta2 (x) {
 }
 Beta ; Theta as Theta2
 </syntaxhighlight>
+
+This is a rare case. Most cases use alternative definitions:
+<syntaxhighlight lang="vb">
+Module Beta {
+	Module Theta (x){
+		Print "This is Theta, we get x=";x
+	}
+	For i=1 to 3 : Theta i : Next i
+}
+Beta
+Module Beta {
+	Module Theta (x) {
+		Print "This is Theta2, we get x=";x
+	}
+	For i=1 to 3 : Theta i : Next i
+}
+Beta
+</syntaxhighlight>
+
+Another variation is the use of function pass by reference:
+<syntaxhighlight lang="vb">
+Module Beta {
+	Read &theta()
+	For i=1 to 3 :Call Theta(i) : Next i
+}
+Function Theta(x){
+	Print "This is Theta, we get x=";x
+}
+Function Theta2(x) {
+	Print "This is Theta2, we get x=";x
+}
+Beta &Theta()
+Beta &Theta2()
+</syntaxhighlight>
+
+Or a more compact way to use a Group:
+<syntaxhighlight lang="vb">
+Module Beta {
+	Read That
+	For i=1 to 3 :Call That.Theta(i) : Next i
+}
+Group A {
+	Function Theta(x){
+		Print "This is Theta, we get x=";x
+	}
+}
+Group B {
+	Function Theta(x) {
+		Print "This is Theta2, we get x=";x
+	}
+}
+Beta A
+Beta B
+</syntaxhighlight>
+
+Or a more compact way to use a Class:
+<syntaxhighlight lang="vb">
+Module Beta {
+	Read That
+	For i=1 to 3 :Call That.Theta(i) : Next i
+}
+Class Something {
+Private:
+	string message=letter$	' letter$ read from stack of values a string
+Public:
+	Function Theta(x){
+		Print .message;x
+	}
+}
+A=Something("This is Theta, we get x=")
+B=Something("This is Theta2, we get x=")
+Beta A
+Beta B
+</syntaxhighlight>
+
+
+Or a variant of class which made an object which return value
+<syntaxhighlight lang="vb">
+Module Beta {
+	Read &That
+	For i=1 to 3 :Print That(i) : Next i
+}
+Class Something {
+Private:
+	string message=letter$	' letter$ read from stack of values a string
+Public:
+	Set {
+		Read This
+	}
+	Value (x){  ' (x) change to: Read x
+		= .message + x  ' .message is string (x can be string or number)
+	}
+}
+A=Something("This is Theta, we get x=")
+Beta &A
+A=Something("This is Theta2, we get x=")
+Beta &A
+</syntaxhighlight>
+
+Or by using lambda functions (functions which we hold in variables, with closures)
+
+<syntaxhighlight lang="vb">
+Module Beta {
+	Read &That
+	For i=1 to 3 :Print That(i) : Next i
+}
+m="This is Theta, we get x="
+A=lambda m  (x)->m + x ' one line lambda function
+Beta &A
+' we can use multiline lambda functions
+A=lambda m="This is Theta2, we get x=" (x)->{
+	=m + x
+}
+Beta &A
+</syntaxhighlight>
+
+The same but now we bass by value (we remove & from the caller and the callee too:
+
+<syntaxhighlight lang="vb">
+Module Beta {
+	Read That
+	For i=1 to 3 :Print That(i) : Next i
+}
+m="This is Theta, we get x="
+A=lambda m  (x)->m + x ' one line lambda function
+Beta A
+' we can use multiline lambda functions
+A=lambda m="This is Theta2, we get x=" (x)->{
+	=m + x
+}
+Beta A
+</syntaxhighlight>
+
 ====Greek Vocabulary====
-<syntaxhighlight lang="m2000 interpreter">Τμήμα Βήτα {
+<syntaxhighlight lang="vb">Τμήμα Βήτα {
       Τμήμα Θήτα (χ){
             Τύπωσε "Αυτό είναι το Θήτα, θα πάρουμε το χ=";χ
       }
@@ -52,9 +241,9 @@ Beta ; Theta as Theta2
 Βήτα ; Θήτα ως Θήτα2</syntaxhighlight>
 
 
-As we can see from code, some statements are like BASIC, except the use of curly brackets {}. Check the code below. We have a Module (as a Procedure), where we define some functions and some variables, as entities. These entities defined in every call to CheckIt, and erased when execution return from CheckIt. By default every parameter in M2000 pass by value. We define two functions, Alfa() where we set type for parameter x and ExpType$() where we not set type for x, and we wish to return the name of type when we make a call. 
+As we can see from code, some statements are like BASIC, except the use of curly brackets {}. Check the code below. We have a Module (as a Procedure), where we define some functions and some variables, as entities. These entities defined in every call to CheckIt, and erased when execution return from CheckIt. By default every parameter in M2000 pass by value. We define a function, Alfa() where we set type for parameter.
 
-<syntaxhighlight lang="m2000 interpreter">Module CheckIt {
+<syntaxhighlight lang="vb">Module CheckIt {
       \\ We can't call something out of this module
       Function Alfa(X as double) {
             =X**2
@@ -70,14 +259,13 @@ As we can see from code, some statements are like BASIC, except the use of curly
       Print Type$(Z)
       Currency Z1=212.12, Z2=323233.12, Z3=223212323323.12
       Print Z1, Z2, Z3
-      Def ExpType$(x)=Type$(x)
-      Print ExpType$(Z1+Z2) ' Currency
-      Print ExpType$(Z1*Z2) ' Currency
-      Print ExpType$(Z2*Z3) ' Double (Currency can't hold this number)
+      Print Type$(Z1+Z2) ' Currency
+      Print Type$(Z1*Z2) ' Currency
+      Print Type$(Z2*Z3) ' Double (Currency can't hold this number)
       \\ Integer, Long, Single, Currency, Decimal
-      Print ExpType$(10%), ExpType$(10&), ExpType$(10~), ExpType$(10#), ExpType$(10@)
+      Print Type$(10%), Type$(10&), Type$(10~), Type$(10#), Type$(10@)
       \\ Without symbol is a Double
-      Print ExpType$(10)
+      Print Type$(10)
 }
 \\ We call it
 CheckIt
@@ -92,7 +280,7 @@ A statement Input Alfa$ can input characters for a string or for object typed gr
 
 Types are strong for values with a name (variables, constants), but weak for items in containers. In a container (Array, Inventory and Stack) we can place anything including other containers. We can bypass the "strong" capability but this isn't a practice for good programming. Internal or variables are of type of Variant, so we can make a reference of A to A$ and we can save a string "1212" and read from A the number 1212.
 
-<syntaxhighlight lang="m2000 interpreter">
+<syntaxhighlight lang="vb">
 Module AKindOfMess {
       a=10@
       Print Type$(a)="Decimal"
@@ -131,7 +319,7 @@ Print Error$=""
 
 So check this for proper use of types.
 
-<syntaxhighlight lang="m2000 interpreter">Module CheckInt {
+<syntaxhighlight lang="vb">Module CheckInt {
       A%=1212212.12@
       Print A% ' 1212212
       A%=1212212.52@
@@ -149,18 +337,19 @@ So check this for proper use of types.
 }
 CheckInt</syntaxhighlight>
 
-So we say about Integer Variables, and no Integer Numeric Type. Like in Basic, M2000 is not case sensitive (except for labels), so A% and a% is the same. We may have A, A$ and A% as three variables, or A(), A%(), A$() as arrays or and functions. We can use name(@ ) to call function and not array if we have each with same name.
+So we say about Integer Variables, and no Integer Numeric Type. Like in Basic, M2000 is not case sensitive (except for labels), so A% and a% is the same. We may have A, A$ and A% as three variables, or A(), A%(), A$() as arrays or and functions. We can use name(* ) to call function and not array if we have each with same name.
 
-<syntaxhighlight lang="m2000 interpreter">Dim A(10)=1
+<syntaxhighlight lang="vb">Dim A(10)=1
 Def A(x)=x**2
-Print A(3), A(@ 4)</syntaxhighlight>
+Print A(3), A(* 4)  ' change @ to * from later versions
+</syntaxhighlight>
 
 
 By default all variables are local. M2000 uses heap to store local variables, not stack. We can use global variables, but a local definition hide a global one. We can make global variables for temporary use (at return from module which we define a global, this global erased). A global definition in an already defined global variable with same name, hide for temporary use the old global variable.
 
 It is easy to make modules, with modules, functions, variables, arrays. We can use subroutines when we want code in a module or a function to used more than once. We can use local variables inside subroutines. In subroutines we can use module's variables, functions, subroutines. Until here we see something like BASIC, except that variables are local to modules and functions, but can be used by subroutines. Also we have see that we can replace a module in a module when we call it. With this replacement we can use a predefined logic with some "terminals", modules that get parameters and do final things. We can make global modules and functions in local modules and functions, but these exist until creator module or function exit.
 
-M2000 can be used for more advanced programming. Modules and functions can be members of Groups. Groups are values. So a function can return a Group. 
+M2000 can be used for more advanced programming. Modules and functions can be members of Groups. Groups are values. So a function can return a Group.
 
 ===Stack of Values===
 Modules and functions get parameters in a stack. Modules get the parent stack with parameters, and functions get a new stack with parameters. Modules return from call and are responsible to clear as needed the stack. Functions drop the stack after the call from an expression. A module can return entities in stack, if we want to do that. We can call a module and pass parameters, and that module can call other module leaving parameters in stack to be read in last module.
@@ -170,7 +359,7 @@ In the example below (y) is a Read y for module definition. Early versions of la
 
 As we see alfa has no read statement, because before get the first number need to make two modules, and then pop one number and call a module passing current stack, so if choose beta, then the second value feed y  from a read y statement.
 
-<syntaxhighlight lang="m2000 interpreter">
+<syntaxhighlight lang="vb">
 module alfa  {
       module beta (y) {
             print y**3
@@ -195,15 +384,13 @@ function sumall {
 print sumall(1,2,3,4,5,6,7)=28
 </syntaxhighlight>
 
-
-
 ===OOP===
 Groups are objects for M2000. We can use them as values, and if we want we can use pointers for groups (but we can make a lot of programs without using pointers to groups). Without using pointer, a Group may be local with a name in a Module or can be in a container like array, inventory (a type of map) and stack objects, without name. Groups may have private and public members, may have properties as read only, may get value and return value, and may have operators. Members of Groups can be anything, including other groups. Groups may have events too. We can make groups by using CLASS statement or by using own function which return a Group or a pointer to Group.
 
 A special object is the lambda object, which may have a number of closures, and have to faces, a variable and a function:
 
 
-<syntaxhighlight lang="m2000 interpreter">Module  Delta {
+<syntaxhighlight lang="vb">Module  Delta {
       \\ Make a group like a lambda
       \\ A Class make a Global Function
       \\ (in a group a Class definition make a group member, not a global function)
@@ -244,7 +431,7 @@ We can place a lambda function as closure in a lambda function, and we can build
 
 
 a class define a type too. We can make a class from other classes too. We can make inner classes too.
-<syntaxhighlight lang="m2000 interpreter">
+<syntaxhighlight lang="vb">
 Form 80,50
 \\ counters supposed we provide them from a file
 global LastCustomerId=100, ReportId=80
@@ -342,7 +529,7 @@ While M {
 
 Until now we see modules/functions/subs for procedural programming, Groups for OOP, Groups as lambda functions and lambda functions for functional programming. We can use events for groups and for COM objects, including GUI objects.
 
-<syntaxhighlight lang="m2000 interpreter">Module Beta {
+<syntaxhighlight lang="vb">Module Beta {
       Group WithEvents Alpha {
             Event "One"
             Module DoIt (x) {
@@ -380,7 +567,7 @@ Until now we see that programming with events can be used in M2000. There is an 
 
 Modules may have Threads, part of modules that can be executed in intervals, can be halted, or can be released, and can be erased. Each thread has own stack and may have own static variables (Modules and Functions also may have static variables), but can use modules variables and functions/modules/subs. Threads can run concurrent (thread return to task manager after execution of a statement or a block of statements) or sequential (a thread has to exit from interval to start other thread)
 
-<syntaxhighlight lang="m2000 interpreter">Module Zeta {
+<syntaxhighlight lang="vb">Module Zeta {
       k=10
       Thread {
            k++
@@ -399,7 +586,7 @@ Zeta</syntaxhighlight>
 M2000 Interpreter can work with Structures and Buffers. Buffer is a memory block and Structure can define types of memory, and a buffer can hold arrays of structures. Each structure can be made from other structures or arrays of structures, and may have unions. We can use buffers for code execution (writing machine code), using standard buffers (not executable), for data holder. Also we can use Buffers calling external dll and passing by address.
 
 
-<syntaxhighlight lang="m2000 interpreter">Module Kappa {
+<syntaxhighlight lang="vb">Module Kappa {
       Function Theta(x) {
              Structure Points_single {
                   x as single
@@ -415,4 +602,26 @@ M2000 Interpreter can work with Structures and Buffers. Buffer is a memory block
       \\
       Print Eval(P, 0!x)=1212.12~, Eval(P, 0!y)=21.1212~
 }
-Kappa</syntaxhighlight>
+Kappa
+Module Kappa {
+      Function Theta(x) {
+             Structure Points_single {
+                  x as single
+                  y as single
+            }
+            Buffer Clear Points as Points_single*x
+            =Points
+      }
+      P=Theta(100)
+      Print Len(P)=800 ' 2x4x100 bytes
+      ' new way to use fields of structure
+      P[0]|x=1212.12
+      P[0]|y=21.1212
+      Print Eval(P, 0!x)=1212.12~, Eval(P, 0!y)=21.1212~
+      Print P[0]|x=1212.12~, P[0]|y=21.1212~
+      P[4]=P[0]   ' copy of structure at offser 4*len of structrure Points_single
+      ' p(0) is address of first struct, p(4) is address of 5th struct
+      Print P[4]|x=1212.12~, P[4]|y=21.1212~, p(4)-p(0)=32
+}
+Kappa
+</syntaxhighlight>

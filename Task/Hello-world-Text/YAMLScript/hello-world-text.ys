@@ -1,10 +1,10 @@
-!yamlscript/v0
+!ys-0
 
 say: "Hello, world!"
 
 =>: (say "Hello, world!")
 
-=>: say("Hello, world!")
+say: "Hello, world!"
 
 say:
   =>: "Hello, world!"

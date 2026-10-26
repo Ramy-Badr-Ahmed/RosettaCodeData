@@ -1,21 +1,18 @@
-import random
+from random import randrange
 
-def is_Prime(n):
+def is_Prime(n: int):
     """
     Miller-Rabin primality test.
 
     A return value of False means n is certainly not prime. A return value of
     True means n is very likely a prime.
     """
-    if n!=int(n):
-        return False
-    n=int(n)
-    #Miller-Rabin test for prime
-    if n==0 or n==1 or n==4 or n==6 or n==8 or n==9:
+    #Miller-Rabin test for primes
+    if n in [2,3,5,7]:
+        return True
+    elif n<10:
         return False
 
-    if n==2 or n==3 or n==5 or n==7:
-        return True
     s = 0
     d = n-1
     while d%2==0:
@@ -32,7 +29,7 @@ def is_Prime(n):
         return True
 
     for i in range(8):#number of trials
-        a = random.randrange(2, n)
+        a = randrange(2, n)
         if trial_composite(a):
             return False
 

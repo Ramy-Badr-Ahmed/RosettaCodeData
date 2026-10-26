@@ -25,9 +25,9 @@ extension op : IntNumber
     }
 }
 
-public program()
+public Program()
 {
-    N.AmicablePairs.forEach::(var Tuple<int,int> pair)
+    (N.AmicablePairs)::forEach<Tuple<int,int>>::(pair)
     {
         console.printLine(pair.Item1, " ", pair.Item2)
     }

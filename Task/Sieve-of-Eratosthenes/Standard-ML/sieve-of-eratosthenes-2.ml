@@ -1,9 +1,9 @@
 -val writeSegment = fn  L : {segment:BitArray.array, start:IntInf.int} list =>   fn NthSegment =>
-		   let
-		        val M=List.nth (L , NthSegment - 1 )
-		   in
-		        List.map (fn x=> x + #start M)  (map IntInf.fromInt (BitArray.getBits ( #segment M)) )
-		   end;
+         let
+              val M=List.nth (L , NthSegment - 1 )
+         in
+              List.map (fn x=> x + #start M)  (map IntInf.fromInt (BitArray.getBits ( #segment M)) )
+         end;
 - val primesInBits = segmentedSieve 2500000000 ;
 val primesInBits =
   [{segment=-,start=1},{segment=-,start=120000001},
@@ -17,3 +17,5 @@ val it =
   : IntInf.int list
 - writeSegment primesInBits 1 ;
 val it = [2,3,5,7,11,13,17,19,23,29,31,37,...] : IntInf.int list
+
+

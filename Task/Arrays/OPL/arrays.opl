@@ -1,0 +1,10 @@
+REM As far as I know, there is no way to have dynamic arrays.
+
+PROC main:
+  LOCAL array1%(10),array2$(10,12)
+  REM Array element count starts at 1.
+  array1%(1)=128
+  array2$(10)="Rosetta Code"
+  PRINT array1%(1),array2$(10)
+  GET
+ENDP

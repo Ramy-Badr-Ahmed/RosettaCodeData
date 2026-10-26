@@ -1,4 +1,4 @@
-val factorial = fn x:if(x < 2: 1; x * fn((x - 1)))
+val factorial = fn(x) { if(x < 2: 1; x * fn((x - 1))) }
 
 val permute = fn(plist) {
     if plist is not list: throw "expected list"
@@ -7,7 +7,7 @@ val permute = fn(plist) {
     if len(plist) > limit: throw "permutation limit exceeded (currently {{limit}})"
 
     var elements = plist
-    var ordinals = pseries(len(elements))
+    var ordinals = series(len(elements))
 
     val n = len(ordinals)
     var i, j

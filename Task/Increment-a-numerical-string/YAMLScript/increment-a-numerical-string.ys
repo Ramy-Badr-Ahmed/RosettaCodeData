@@ -1,0 +1,6 @@
+!ys-0
+
+# The arg stays a string via ARGV (no numeric auto-conversion)
+defn main(*):
+  s =: ARGV.0 || '1234'
+  say: s:N.++

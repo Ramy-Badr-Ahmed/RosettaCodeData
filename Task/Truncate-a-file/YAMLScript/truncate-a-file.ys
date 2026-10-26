@@ -1,0 +1,23 @@
+!ys-0
+
+# YS file IO is string based; the demo file is plain ASCII, where
+# read/write round-trip bytes exactly.
+
+defn main(file=nil length=12):
+  file ||=: demo-file()
+  say: "Before: $(read(file).#) bytes"
+  truncate file: length
+  say: "After: $(read(file).#) bytes"
+
+defn demo-file():
+  file =: 'truncate-demo.dat'
+  write file: 'abcdefghijklmnopqrstuvwxyz0123456789'
+  =>: file
+
+defn truncate(file length):
+  when-not fs/e(file):
+    die: "File '$file' does not exist"
+  content =: file:read
+  when length >= content.#:
+    die: "Length $length is not less than file size $(content.#)"
+  write file: content.substr(0 length)

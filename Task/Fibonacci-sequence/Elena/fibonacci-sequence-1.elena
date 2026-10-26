@@ -20,10 +20,10 @@ fibu(n)
     }
 }
 
-public program()
+public Program()
 {
     for(int i := 0; i <= 10; i+=1)
     {
-        console.printLine(fibu(i))
+        Console.printLine(fibu(i))
     }
 }

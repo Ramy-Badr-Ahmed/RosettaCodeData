@@ -1,0 +1,15 @@
+!ys-0
+
+defn main(count=9):
+  loop a 0, b 1, found 0:
+    when found < count:
+      is-prime =: prime?(a)
+      when is-prime:
+        say: a
+      found :if is-prime +=: 1
+      recur: b, (a + b), found
+
+defn prime?(n):
+  (n > 1) &&
+  range(2 n:sqrt:I.++)
+  .every?(\((n % _).?))

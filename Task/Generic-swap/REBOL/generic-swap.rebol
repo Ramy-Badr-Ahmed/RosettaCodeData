@@ -1,4 +1,4 @@
-REBOL [
+Rebol [
 	Title: "Generic Swap"
 	URL: http://rosettacode.org/wiki/Generic_swap
 	Reference: [http://reboltutorial.com/blog/rebol-words/]

@@ -1,0 +1,15 @@
+!ys-0
+
+defn main():
+  say: (101 .. 499)
+    .filter(strange-plus?):joins
+
+defn strange-plus?(n):
+  ds =: n:S
+  prime?(ds.0:S:I + ds.1:S:I) &&:
+    prime?(ds.1:S:I + ds.2:S:I)
+
+defn prime?(n):
+  (n > 1) &&
+  range(2 n:sqrt:I.++)
+  .every?(\((n % _).?))

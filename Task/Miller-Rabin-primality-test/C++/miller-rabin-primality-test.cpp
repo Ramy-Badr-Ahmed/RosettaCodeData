@@ -25,7 +25,7 @@ uint64_t multiply_modulus(const uint64_t& a, const uint64_t& b, const uint64_t& 
     if ( bm > am ) {
     	std::swap(am, bm);
     }
-    uint64_t result;
+    uint64_t result = 0;
     while ( bm > 0 ) {
     	if ( ( bm & 1) == 1 ) {
     		result = add_modulus(result, am, modulus);
@@ -65,10 +65,10 @@ bool is_composite(const uint32_t& a, const uint64_t& d, const uint64_t& n, const
 bool composite_test(const std::vector<uint32_t>& primes, const uint64_t& d, const uint64_t& n, const uint32_t& s) {
 	for ( const uint32_t& prime : primes ) {
 		if ( is_composite(prime, d, n, s) ) {
-			return true;
+			return false;
 		}
 	}
-	return false;
+	return true;
 }
 
 bool is_prime(const uint64_t& n) {

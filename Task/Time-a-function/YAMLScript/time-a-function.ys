@@ -1,0 +1,13 @@
+!ys-0
+
+defn main(n=30):
+  start =: System/nanoTime()
+  result =: n:fib
+  elapsed =: (System/nanoTime() - start) / 1.0e6
+  say: "fib($n) = $result"
+  say: "elapsed: $elapsed ms"
+
+defn fib(n):
+  if n < 2:
+    then: n
+    else: fib(n.--) + fib(n - 2)

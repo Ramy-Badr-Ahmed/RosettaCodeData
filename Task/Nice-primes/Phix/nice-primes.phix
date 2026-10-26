@@ -1,0 +1,3 @@
+function pdr(integer n) return is_prime(n) and is_prime(1+remainder(n-1,9)) end function
+sequence res = filter(tagset(1000,500),pdr)
+printf(1,"%d nice primes found:\n  %s\n",{length(res),join_by(apply(res,sprint),1,11,"  ","\n  ")})

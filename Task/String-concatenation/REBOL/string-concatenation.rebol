@@ -1,3 +1,6 @@
 s: "hello"
 print s1: rejoin [s " literal"]
-print s1
+; Or:
+print s2: join s " literal"
+; Or:
+print s3: ajoin [s " literal"]

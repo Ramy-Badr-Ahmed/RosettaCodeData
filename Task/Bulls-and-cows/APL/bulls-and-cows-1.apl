@@ -1,10 +1,4 @@
-input   ← {⍞←'Guess: ' ⋄ 7↓⍞}
-output  ← {⎕←(↑'Bulls: ' 'Cows: '),⍕⍪⍵ ⋄ ⍵}
-isdigits← ∧/⎕D∊⍨⊢
-valid   ← isdigits∧4=≢
-guess   ← ⍎¨input⍣(valid⊣)
-bulls   ← +/=
-cows    ← +/∊∧≠
-game    ← (output ⊣(bulls,cows) guess)⍣(4 0≡⊣)
-random  ← 4∘⊣?9∘⊣
-moo     ← 'You win!'⊣(random game⊢)
+{R←1+4?9
+ _←{G←⍎¨{⍞←'Guess: '⋄7↓⍞}⍣((∧/⍤∊∘⎕D∧4=≢)⊣)⍬
+    BC⊣⎕←(↑'Bulls: ' 'Cows: '),⍕⍪BC←R(+.=,∊+.∧≠)G
+   }⍣(4 0≡⊣)⍬⋄'You win!'}⍬

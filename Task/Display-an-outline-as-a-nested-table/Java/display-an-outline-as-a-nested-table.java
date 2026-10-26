@@ -84,7 +84,8 @@ public final class DisplayAnOutlineAsANestedTable {
 	    int rowColumn = 0;
 
 	    StringBuilder builder = new StringBuilder();
-	    builder.append("{| class=\"" + "wikitable" + "\"" + " style=\"" + "text-align: center;" + "\"" + "\n");
+	    builder.append(
+            "{| class=\"" + "wikitable" + "\"" + " style=\"" + "text-align: center;" + "\"" + "\n");
 
 	    // Breadth first traversal of 'tree'.
 	    Deque<Node> queue = new ArrayDeque<Node>();
@@ -267,8 +268,8 @@ public final class DisplayAnOutlineAsANestedTable {
 		
 		private static int index = -1;
 		
-		private static final List<String> colours = List.of( "#ffff66;", "#ffcc66;", "#ccffcc;", "#ccccff;",
-                                                             "#ffcccc;", "#00cccc;", "#cc9966;", "#ffccff;" );
+		private static final List<String> colours = List.of(
+            "#ffff66;", "#ffcc66;", "#ccffcc;", "#ccccff;", "#ffcccc;", "#00cccc;", "#cc9966;", "#ffccff;" );
 		
 	}
 

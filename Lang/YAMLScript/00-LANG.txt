@@ -4,23 +4,33 @@
 {{language programming paradigm|hosted}}
 {{implementation|Lisp}}
 
-'''[https://yamlscript.org YAMLScript]''' is a new programming language that uses [https://yaml.org/ YAML] as its syntax. It is a complete, functional, general purpose language, but can also be easily embedded in YAML files to make them dynamic at load time. Most existing YAML files and all JSON files are already valid YAMLScript programs. YAMLScript has a compiler/interpreter CLI program called <code>[https://github.com/yaml/yamlscript/releases ys]</code> and is also available in several programming languages as a binding module to the <code>[https://github.com/yaml/yamlscript/releases libyamlscript.so]</code> shared library:
+'''[https://yamlscript.org YS (pronounced "wise", aka YAMLScript)]''' is a new programming language that uses [https://yaml.org/ YAML] as its syntax. It is a complete, functional, general purpose language, but can also be easily embedded in YAML files to make them dynamic at load time. Most existing YAML files and all JSON files are already valid YS programs.
 
+You can learn YS for free (with help from experienced mentors) at [https://exercism.org/tracks/yamlscript Exercism].
+
+YS has a compiler/interpreter CLI program called <code>[https://github.com/yaml/yamlscript/releases ys]</code> and is also available in several programming languages as a binding module to the <code>[https://github.com/yaml/yamlscript/releases libys.so]</code> shared library:
+
+* [https://www.nuget.org/packages/YAMLScript/ C#]
 * [https://clojars.org/org.yamlscript/clj-yamlscript Clojure]
+* [https://shardbox.org/shards/yamlscript Crystal]
 * [https://github.com/yaml/yamlscript-go Go]
+* [https://hackage.haskell.org/package/yamlscript Haskell]
 * [https://clojars.org/org.yamlscript/yamlscript Java]
+* [https://juliahub.com/ui/Packages/General/YAMLScript Julia]
+* [https://luarocks.org/modules/ingy/yamlscript Lua]
 * [https://www.npmjs.com/package/@yaml/yamlscript NodeJS]
 * [https://metacpan.org/pod/YAMLScript Perl]
+* [https://packagist.org/packages/yaml/yamlscript PHP]
 * [https://pypi.org/project/yamlscript/ Python]
 * [https://raku.land/zef:ingy/YAMLScript Raku]
 * [https://rubygems.org/gems/yamlscript Ruby]
 * [https://crates.io/crates/yamlscript Rust]
 
-==Installing YAMLScript==
+==Installing YS==
 
-Run this command to install the <code>ys</code> command line YAMLScript runner/loader/compiler program.
+Run this command to install the <code>ys</code> command line YS runner/loader/compiler binary.
 
-  curl -s https://yamlscript.org/install | bash
+  curl https://getys.org/ys | bash
 
 That will install <code>$HOME/.local/bin/ys</code>. If <code>$HOME/.local/bin</code> is not in your <code>PATH</code>, run:
 
@@ -29,14 +39,77 @@ That will install <code>$HOME/.local/bin/ys</code>. If <code>$HOME/.local/bin</c
 Test the new installation:
 
   $ ys --help
-  ys - The YAMLScript (YS) Command Line Tool
+  ys - The YS Command Line Utility
  
   Usage: ys [options] [file]
  
   Options:
-    -r, --run                Compile and evaluate a YAMLScript file (default)
-    -l, --load               Output the evaluated YAMLScript value
-    -e, --eval YSEXPR        Evaluate a YAMLScript expression
+    -r, --run                Compile and evaluate a YS file (default)
+    -l, --load               Output the evaluated YS value
+    -e, --eval YSEXPR        Evaluate a YS expression
   ...
 
 See https://yamlscript.org for more information.
+
+==Adding YS Entries to Rosetta Code==
+
+Here's a YS program that you can use to format a YS program and it's output to a MediaWiki text to insert into a Rosetta Code task page:
+
+<pre>
+#!/usr/bin/env ys-0
+
+# Create a Rosetta Code entry for a YS program:
+
+defn main(program *args):
+  say: |-
+
+    =={{header|YAMLScript}}==
+    <syntaxhighlight lang="yaml">
+    $chomp(program:read)
+    </syntaxhighlight>
+
+  when-not ENV.NO_OUT.?:
+    command =: "ys $program$fmt-args(args)"
+    output =: bash(command).out:chomp
+    say: |-
+
+      {{out}}
+      <pre>
+      $ $command
+      $output
+      &lt;/pre>
+
+defn fmt-args(args):
+  args =: !:joins
+    map _ args:
+      \(re-matches(/[-+,.:\w]+/ _:S)
+        .if(_ pr-str(_)))
+  when args.?: " $args"
+</pre>
+
+You run it like this:
+
+<pre>
+$ ys rosetta-code-ys-entry fibonacci-sequence.ys 5
+
+=={{header|YAMLScript}}==
+<syntaxhighlight lang="yaml">
+!YS-v0
+
+defn main(n=10):
+  loop a 0, b 1, i 1:
+    say: a
+    when i < n:
+      recur: b, (a + b), i.++
+</syntaxhighlight>
+
+{{out}}
+<pre>
+$ ys fibonacci-sequence.ys 5
+0
+1
+1
+2
+3
+&lt;/pre>
+</pre>

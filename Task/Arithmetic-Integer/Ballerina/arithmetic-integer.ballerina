@@ -1,0 +1,21 @@
+import ballerina/io;
+
+function divmod(int a, int b) returns [int, int] {
+    return [a / b, a % b];
+}
+
+function pow(int n, int e) returns int {
+    return <int> (<float> n).pow(<float> e);
+}
+
+public function main() returns error? {
+    int a = check int:fromString(io:readln("first number:     "));
+    int b = check int:fromString(io:readln("second number:    "));
+    io:println("sum:              ", a + b);
+    io:println("difference:       ", a - b);
+    io:println("product:          ", a * b);
+    io:println("integer quotient: ", a / b);
+    io:println("remainder:        ", a % b);
+    io:println("exponentiation:   ", pow(a, b));
+    io:println("divmod:           ", divmod(a, b));
+}

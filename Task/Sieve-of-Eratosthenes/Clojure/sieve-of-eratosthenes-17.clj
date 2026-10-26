@@ -12,10 +12,10 @@
         pgbts (bit-shift-left pgsz 5),
         cntem (fn [lmtw]
                 (let [lmtw (long lmtw)]
-	          (loop [i (long 0), c (long 0)]
-	            (if (>= i lmtw) (- (bit-shift-left lmtw 5) c)
-	              (recur (inc i)
-	              (+ c (java.lang.Integer/bitCount (aget pg i))))))))]
+             (loop [i (long 0), c (long 0)]
+               (if (>= i lmtw) (- (bit-shift-left lmtw 5) c)
+                 (recur (inc i)
+                 (+ c (java.lang.Integer/bitCount (aget pg i))))))))]
     (if (< lmt pgbts)
       (let [lmtw (bit-shift-right lmt 5),
             lmtb (bit-and lmt 31)
@@ -24,7 +24,8 @@
            (- 32 (java.lang.Integer/bitCount (bit-or (aget pg lmtw)
                                                       msk)))))
       (- pgbts
-         (areduce pg i ret (long 0) (+ ret (java.lang.Integer/bitCount (aget pg i))))))))
+         (areduce pg i ret (long 0)
+                  (+ ret (java.lang.Integer/bitCount (aget pg i))))))))
 ;;      (cntem pgsz))))
 (defn- primes-pages
   "unbounded Sieve of Eratosthenes producing a lazy sequence of culled page buffers."
@@ -36,13 +37,13 @@
                   ^ints pg (int-array pgsz),
                   cull (fn [bpgs']
                          (loop [i (long 0), bpgs' bpgs']
-	                         (let [^ints fbpg (first bpgs'),
-	                               bpgsz (long (alength fbpg))]
-	                           (if (>= i bpgsz)
-	                             (recur 0 (next bpgs'))
-	                             (let [p (long (aget fbpg i)),
-	                                   sqr (long (* p p))]
-	                               (if (< sqr pgrng) (do
+                            (let [^ints fbpg (first bpgs'),
+                                  bpgsz (long (alength fbpg))]
+                              (if (>= i bpgsz)
+                                (recur 0 (next bpgs'))
+                                (let [p (long (aget fbpg i)),
+                                      sqr (long (* p p))]
+                                  (if (< sqr pgrng) (do
                    (loop [j (long (let [s (long (bit-shift-right (- sqr 3) 1))]
                                      (if (>= s lowi) (- s lowi)
                                        (let [m (long (rem (- lowi s) p))]
@@ -98,39 +99,43 @@
           (more [this] (let [nv (.next this)] (if (nil? nv) (CIS. nil nil) nv)))
           (cons [this o] (clojure.core/cons o this))
           (empty [_] (if (and (nil? v) (nil? cont)) nil (CIS. nil nil)))
-          (equiv [this o] (loop [cis1 this, cis2 o] (if (nil? cis1) (if (nil? cis2) true false)
-                                                      (if (or (not= (type cis1) (type cis2))
-                                                              (not= (.v cis1) (.v ^CIS cis2))
-                                                              (and (nil? (.cont cis1))
-                                                                   (not (nil? (.cont ^CIS cis2))))
-                                                              (and (nil? (.cont ^CIS cis2))
-                                                                   (not (nil? (.cont cis1))))) false
-                                                        (if (nil? (.cont cis1)) true
-                                                          (recur ((.cont cis1)) ((.cont ^CIS cis2))))))))
-          (count [this] (loop [cis this, cnt 0] (if (or (nil? cis) (nil? (.cont cis))) cnt
-                                                  (recur ((.cont cis)) (inc cnt)))))
+          (equiv [this o] (loop [cis1 this, cis2 o]
+                            (if (nil? cis1) (if (nil? cis2) true false)
+                              (if (or (not= (type cis1) (type cis2))
+                                      (not= (.v cis1) (.v ^CIS cis2))
+                                      (and (nil? (.cont cis1))
+                                           (not (nil? (.cont ^CIS cis2))))
+                                      (and (nil? (.cont ^CIS cis2))
+                                           (not (nil? (.cont cis1)))))
+                                  false
+                                  (if (nil? (.cont cis1)) true
+                                     (recur ((.cont cis1)) ((.cont ^CIS cis2))))))))
+          (count [this] (loop [cis this, cnt 0]
+                          (if (or (nil? cis) (nil? (.cont cis))) cnt
+                            (recur ((.cont cis)) (inc cnt)))))
         clojure.lang.Seqable
           (seq [this] (if (and (nil? v) (nil? cont)) nil this))
         clojure.lang.Sequential
         Object
-          (toString [this] (if (and (nil? v) (nil? cont)) "()" (.toString (seq (map identity this))))))
-		  (letfn [(next-prm [lowi i pgseq]
-		            (let [lowi (long lowi),
+          (toString [this] (if (and (nil? v) (nil? cont)) "()"
+                             (.toString (seq (map identity this))))))
+        (letfn [(next-prm [lowi i pgseq]
+                  (let [lowi (long lowi),
                       i (long i),
                       ^ints pg (first pgseq),
-		                  pgsz (long (alength pg)),
-		                  pgbts (long (bit-shift-left pgsz 5)),
-		                  ni (long (loop [j (long i)]
-		                             (if (or (>= j pgbts)
-		                                     (zero? (bit-and (aget pg (bit-shift-right j 5))
-		                                               (bit-shift-left 1 (bit-and j 31)))))
-		                               j
-		                               (recur (inc j)))))]
-		              (if (>= ni pgbts)
-		                (recur (+ lowi pgbts) 0 (next pgseq))
-		                (->CIS (+ (bit-shift-left (+ lowi ni) 1) 3)
-		                       (fn [] (next-prm lowi (inc ni) pgseq))))))]
-		    (->CIS 2 (fn [] (next-prm 0 0 (primes-pages)))))))
+                        pgsz (long (alength pg)),
+                        pgbts (long (bit-shift-left pgsz 5)),
+                        ni (long (loop [j (long i)]
+                                   (if (or (>= j pgbts)
+                                           (zero? (bit-and (aget pg (bit-shift-right j 5))
+                                                     (bit-shift-left 1 (bit-and j 31)))))
+                                     j
+                                     (recur (inc j)))))]
+                    (if (>= ni pgbts)
+                      (recur (+ lowi pgbts) 0 (next pgseq))
+                      (->CIS (+ (bit-shift-left (+ lowi ni) 1) 3)
+                             (fn [] (next-prm lowi (inc ni) pgseq))))))]
+          (->CIS 2 (fn [] (next-prm 0 0 (primes-pages)))))))
 (defn primes-paged-count-to
   "counts primes generated by page segments by Sieve of Eratosthenes to the top limit"
   [top]

@@ -1,24 +1,18 @@
 Rebol []
 
-; builds string instead of using an intermediate block
-
-comma-quibbling: func [block /oxford /local s length] [
-    length: length? block
+comma-quibbling: func [block] [
     rejoin [
         "^{"
 
-        either length < 2 [to-string block] [
-            s: to-string block/1
-            for n 2 (length - 1) 1 [repend s [", " pick block n]]
-            if all [oxford (length > 2)] [append s ","]
-            repend s [" and " last block]
+        to-string use [s] [
+            s: copy block
+            s: next s
+            forskip s 2 [insert s either tail? next s [" and "] [", "]]
+            s: head s
         ]
 
         "^}"
     ]
 ]
 
-test: [[] [ABC] [ABC DEF] [ABC DEF G H]]
-foreach t test [print comma-quibbling t]
-print "Now with Oxford comma"
-foreach t test [print comma-quibbling/oxford t]
+foreach t [[] [ABC] [ABC DEF] [ABC DEF G H]] [print comma-quibbling t]

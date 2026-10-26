@@ -1,4 +1,5 @@
 import os
+
 struct LetterFreq {
     rune int
     freq int
@@ -24,6 +25,6 @@ fn main(){
         return 0
     })
     for f in lf {
-        println('${u8(f.rune).ascii_str()} ${f.rune} $f.freq')
+        println('${u8(f.rune).ascii_str()} ${f.rune} ${f.freq}')
     }
 }

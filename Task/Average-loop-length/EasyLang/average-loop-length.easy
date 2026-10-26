@@ -1,11 +1,11 @@
-func average n reps .
+fastfunc average n reps .
+   len f[] n
+   len seen[] n
    for r to reps
-      f[] = [ ]
-      for i to n
-         f[] &= randint n
+      for i = 1 to n
+         f[i] = random 1 n
+         seen[i] = 0
       .
-      seen[] = [ ]
-      len seen[] n
       x = 1
       while seen[x] = 0
          seen[x] = 1
@@ -15,7 +15,7 @@ func average n reps .
    .
    return count / reps
 .
-func analytical n .
+fastfunc analytical n .
    s = 1
    t = 1
    for i = n - 1 downto 1
@@ -30,8 +30,8 @@ for n to 20
    avg = average n 1e6
    ana = analytical n
    err = (avg - ana) / ana * 100
-   numfmt 0 2
+   numfmt 2 0
    write n
-   numfmt 4 9
+   numfmt 9 4
    print avg & ana & err & "%"
 .

@@ -1,0 +1,13 @@
+# Display Cistercian numerals for numbers in range 0-9999
+# https://en.wikipedia.org/wiki/Cistercian_numerals
+S ← $   +    +-+  +    +    + X  +-X  + +  +-+  + +  +-+
+    $   |    |    |    |X   |X   |X   | |  | |  | |  | |
+    $   |    |    |-+  | X  |    |    | +  | +  |-+  |-+
+
+Units ← ⤸1⊜(↯∞_5)⊸≠@\nS
+Cist ← (
+  ≡⋕⍜⇌(⬚@0↙4)°⋕             # Ensure we have four digits.
+  ⊓(≡⇌⇌|⇌|≡⇌|∘)°⊟₄≡⌟⊡⊙Units # Pick each unit and rotate.
+  ˜⊂⊂"  |  "⊓↥↥             # Combine into one symbol.
+)
+⊟≡□⊸≡Cist [0 1 20 300 4000 555 6789 1966]

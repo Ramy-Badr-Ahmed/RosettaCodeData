@@ -1,29 +1,73 @@
-/*REXX program computes/displays chowla numbers (and may count primes & perfect numbers.*/
-parse arg LO HI .                                /*obtain optional arguments from the CL*/
-if LO=='' | LO==","  then LO=  1                 /*Not specified?  Then use the default.*/
-perf= LO<0;               LO= abs(LO)            /*Negative?  Then determine if perfect.*/
-if HI=='' | HI==","  then HI= LO                 /*Not specified?  Then use the default.*/
-prim= HI<0;               HI= abs(HI)            /*Negative?  Then determine if a prime.*/
-numeric digits max(9, length(HI) + 1 )           /*use enough decimal digits for   //   */
-w= length( commas(HI) )                          /*W:   used in aligning output numbers.*/
-tell= \(prim | perf)                             /*set boolean value for showing chowlas*/
-p= 0                                             /*the number of primes found  (so far).*/
-     do j=LO  to HI;       #= chowla(j)          /*compute the  cholwa number  for  J.  */
-     if tell  then say right('chowla('commas(j)")", w+9)    ' = '    right( commas(#), w)
-              else if #==0  then if j>1  then p= p+1
-     if perf  then if j-1==# & j>1  then say right(commas(j), w)   ' is a perfect number.'
-     end   /*j*/
+-- 12 Jun 2026
+include Setting
+numeric digits 12
 
-if prim & \perf  then say 'number of primes found for the range '   commas(LO)    " to " ,
-                           commas(HI)        " (inclusive)  is: "   commas(p)
-exit                                             /*stick a fork in it,  we're all done. */
-/*──────────────────────────────────────────────────────────────────────────────────────*/
-chowla: procedure; parse arg x;         if x<2  then return 0;          odd= x // 2
-        s=0                                      /* [↓]  use EVEN or ODD integers.   ___*/
-            do k=2+odd  by 1+odd  while k*k<x    /*divide by all the integers up to √ X */
-            if x//k==0  then  s=s + k + x%k      /*add the two divisors to the sum.     */
-            end   /*k*/                          /* [↓]  adkust for square.          ___*/
-        if k*k==x  then  s=s + k                 /*Was  X  a square?    If so, add  √ X */
-        return s                                 /*return     "     "    "      "     " */
-/*──────────────────────────────────────────────────────────────────────────────────────*/
-commas: parse arg _;  do k=length(_)-3  to 1  by -3; _= insert(',', _, k); end;   return _
+say 'CHOWLA NUMBERS'
+say version
+say
+call ChowlaNumbers
+call Timer 'R'
+call PrimeCount
+call Timer 'R'
+call PerfectNumbers
+call Timer 'R'
+exit
+
+ChowlaNumbers:
+procedure
+call Time('r'); sep = Copies('-',12)
+say sep; say ' n Chowla(n)'; say sep
+m = 37
+do i = 1 to m
+   say Right(i,2) Right(Chowla(i),9)
+end
+say sep
+return
+
+PrimeCount:
+procedure
+sep = Copies('-',17)
+say sep; say Right('n',8) Right('Primes<n',8); say sep
+d = 1; work. = 1; m = 1e7; n = 0
+do i = 1 by 2 to m+1
+   e = Xpon(i)
+   if e > d then do
+      say Right(10**e,8) Right(n,8)
+      d = e
+   end
+   if work.i = 0 then
+      iterate i
+   if Chowla(i) = 0 then do
+      n = n+1
+      if i > 1 then do
+         j = i+i
+         do while j < m
+            work.j = 0; j = j+i
+         end
+      end
+   end
+end
+say sep
+return
+
+PerfectNumbers:
+procedure expose Divi.
+sep = Copies('-',12)
+say sep; say Right('Perfect',12); say sep
+k = 2; kk = 3; m = 140e9; n = 0
+do forever
+   p = k * kk
+   if p > 140e9 then
+      leave
+   if Chowla(p) = p-1 then do
+      n = n+1
+      say Right(p,12)
+   end
+   k = kk+1; kk = kk+k
+end
+say sep
+say n 'perfect numbers found below 140e9'
+return
+
+-- Chowla; Xpon; Timer
+include Math

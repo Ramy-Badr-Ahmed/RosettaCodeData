@@ -1,31 +1,11 @@
-'''Fibonacci accumulation'''
+from itertools import islice
 
-from itertools import accumulate, chain
-from operator import add
+def fib():
+    yield 0
+    yield 1
+    a, b = fib(), fib()
+    next(b)
+    while True:
+        yield next(a)+next(b)
 
-
-# fibs :: Integer :: [Integer]
-def fibs(n):
-    '''An accumulation of the first n integers in
-       the Fibonacci series. The accumulator is a
-       pair of the two preceding numbers.
-    '''
-    def go(ab, _):
-        return ab[1], add(*ab)
-
-    return [xy[1] for xy in accumulate(
-        chain(
-            [(0, 1)],
-            range(1, n)
-        ),
-        go
-    )]
-
-
-# MAIN ---
-if __name__ == '__main__':
-    print(
-        'First twenty: ' + repr(
-            fibs(20)
-        )
-    )
+print(tuple(islice(fib(), 10)))

@@ -1,4 +1,4 @@
-REBOL [
+Rebol [
    Title: "Notes"
    URL: http://rosettacode.org/wiki/Take_notes_on_the_command_line
 ]

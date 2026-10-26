@@ -61,8 +61,8 @@ class EquilibriumEnumerator : Enumerator
     enumerable() => en;
 }
 
-public program()
+public Program()
 {
     EquilibriumEnumerator.new(new int[]{ -7, 1, 5, 2, -4, 3, 0 })
-        .forEach(printingLn)
+        .forEach(PrintingLn)
 }

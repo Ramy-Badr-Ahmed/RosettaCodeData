@@ -1,4 +1,4 @@
-REBOL [
+Rebol [
     Title: "Sleep Main Thread"
     URL: http://rosettacode.org/wiki/Sleep_the_Main_Thread
 ]

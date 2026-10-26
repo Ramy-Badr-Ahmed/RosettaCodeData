@@ -1,0 +1,27 @@
+local s1, s2 = "Hello" .. string.rep("\0", 8), " World!"
+local ffi = require "pluto:ffi"
+local libname
+if os.platform == "windows" then
+     libname = "msvcrt"
+elseif os.platform == "macos" then
+     libname = "libSystem.B.dylib"
+else
+     libname = "libc.so.6"
+end
+local lib = ffi.open(libname)
+if lib then
+    print($"Shared library, {libname}, found")
+    lib:cdef[[
+        char *strcat(char *dest, const char *src);
+        size_t strlen(const char *str);
+    ]]
+    local s = lib.strcat(s1, s2)
+    print(s)
+    print(lib.strlen(s))
+    lib = nil
+else
+    print($"Shared library, {libname}, not found.")
+    local s = s1 .. s2
+    print(s)
+    print(#s)
+end

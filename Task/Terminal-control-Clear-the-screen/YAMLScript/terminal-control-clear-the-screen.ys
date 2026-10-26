@@ -1,0 +1,6 @@
+!ys-0
+
+defn main():
+  say: 'Hello!'
+  sleep: 1
+  print: "\e[2J\e[H"

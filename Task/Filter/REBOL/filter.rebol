@@ -1,5 +1,7 @@
-a: []  repeat i 100 [append a i] ; Build and load array.
+data: [] evens: []
+repeat i 20 [append data i] ; Build and load array.
 
-evens: []  repeat element a [if even? element [append evens element]]
-
-print mold evens
+foreach element data [if even? element [append evens element]]
+probe evens
+remove-each element evens [zero? element % 10]
+probe evens

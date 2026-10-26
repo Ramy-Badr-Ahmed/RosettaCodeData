@@ -1,4 +1,4 @@
-REBOL [
+Rebol [
 	Title: "Flow Control"
 	URL: http://rosettacode.org/wiki/Flow_Control_Structures
 ]

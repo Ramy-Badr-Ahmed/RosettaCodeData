@@ -1,1 +1,1 @@
-print system/network/host
+print read dns://

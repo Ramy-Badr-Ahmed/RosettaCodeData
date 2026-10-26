@@ -1,4 +1,4 @@
-REBOL [
+Rebol [
 	Title: "Simple Windowed Application"
 	URL: http://rosettacode.org/wiki/Simple_Windowed_Application
 ]

@@ -1,4 +1,4 @@
-REBOL [
+Rebol [
 	Title: "Increment Numerical String"
 	URL: http://rosettacode.org/wiki/Increment_numerical_string
 ]

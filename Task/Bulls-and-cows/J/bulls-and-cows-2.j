@@ -1,16 +1,4 @@
-   bullcow''
-Guess my number: 1234
-0 bulls and 1 cow.
-Guess my number: 5678
-3 bulls and 0 cows.
-Guess my number: 2349
-0 bulls and 0 cows.
-Guess my number: 1567
-0 bulls and 3 cows.
-Guess my number: 6178
-3 bulls and 0 cows.
-Guess my number: 6157
-1 bull and 2 cows.
-Guess my number: 5178
-4 bulls and 0 cows.
-you win
+output=. ['Bulls: '&,:@'Cows: 'echo@,.":@,.
+guess =. $:^:(*./@e.&Num_j_*:4=#)@(1!:1@1)@echo@'Guess:'
+game  =. [ $:^:(4 0-.@-:]) [:output [ (= ,&(+/) e.*.~:) 0".&>guess
+moo   =. 'You win!'[ (1+4?9:) game ]

@@ -1,4 +1,4 @@
-REBOL [
+Rebol [
     Title: "Keyboard Macros"
     URL: http://rosettacode.org/wiki/Keyboard_macros
 ]

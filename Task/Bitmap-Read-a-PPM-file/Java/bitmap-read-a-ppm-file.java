@@ -10,17 +10,17 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class ReadPPMFile {
+public final class ReadPPMFile {
 
 	public static void main(String[] aArgs) throws IOException {
-        // Using the file created in the Bitmap task
+		// Using the file created in the Bitmap task
 		String filePath = "output.ppm";
 		
 		reader = new BufferedInputStream( new FileInputStream(filePath) );
 		final char header1 = (char) reader.read();
         final char header2 = (char) reader.read();
         final char header3 = (char) reader.read();
-        if ( header1 != 'P' || header2 != '6' || header3 != END_OF_LINE) {
+        if ( header1 != 'P' || header2 != '6' || header3 != END_OF_LINE ) {
         	reader.close();
         	throw new IllegalArgumentException("Not a valid P6 PPM file");
         }
@@ -41,7 +41,7 @@ public class ReadPPMFile {
         }
         reader.reset();
 
-       // Read data
+        // Read data
         BasicBitmapStorage bitmap = new BasicBitmapStorage(width, height);
 
         byte[] buffer = new byte[width * 3];

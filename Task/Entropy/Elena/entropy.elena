@@ -9,7 +9,7 @@ extension op
         = self.ln() / 2.ln();
 }
 
-public program()
+public Program()
 {
     var input := console.readLine();
     var infoC := 0.0r;
@@ -38,5 +38,5 @@ public program()
 
     infoC *= -1;
 
-    console.printLine("The Entropy of ", input, " is ", infoC)
+    Console.printLine("The Entropy of ", input, " is ", infoC)
 }

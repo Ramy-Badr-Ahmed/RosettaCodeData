@@ -1,4 +1,4 @@
-REBOL [
+Rebol [
     Title: "Rot-13"
     URL: http://rosettacode.org/wiki/Rot-13
 ]

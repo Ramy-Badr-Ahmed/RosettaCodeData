@@ -1,7 +1,7 @@
-REBOL [
+Rebol [
     Title: "Documentation"
     URL: http://rosettacode.org/wiki/Documentation
-	Purpose: {To demonstrate documentation of REBOL pograms.}
+	Purpose: {To demonstrate documentation of Rebol programs.}
 ]
 
 ; Notice the fields in the program header. The header is required for
@@ -22,13 +22,13 @@ REBOL [
 
 sum: func [
 	"Add numbers in block."
-	data [block! list!] "List of numbers to add together."
+	data [any-block!] "List of numbers to add together."
 	/average "Calculate average instead of sum."
 	/local
 	i "Iteration variable."
 	x "Variable to hold results."
 ] [
-	x: 0  repeat i data [x: x + i]
+	x: 0  foreach i data [x: x + i]
 	either average [x / length? data][x] ; Functions return last result.
 ]
 

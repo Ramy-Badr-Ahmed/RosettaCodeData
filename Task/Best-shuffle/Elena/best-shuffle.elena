@@ -35,14 +35,14 @@ extension op
    }
 }
 
-public program()
+public Program()
 {
    new string[]{"abracadabra", "seesaw", "grrrrrr", "pop", "up", "a"}.forEach::(s)
    {
       var shuffled_s := s.Shuffled;
 
-      console.printLine("The best shuffle of ",s," is ",shuffled_s,"(",shuffled_s.score(s),")")
+      Console.printLine("The best shuffle of ",s," is ",shuffled_s,"(",shuffled_s.score(s),")")
    };
 
-   console.readChar()
+   Console.readChar()
 }

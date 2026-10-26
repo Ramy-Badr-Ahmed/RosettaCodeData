@@ -1,6 +1,7 @@
 repeat
-   a = randint 20
+   a = random 0 19
    print a
    until a = 10
-   print randint 20
+   print random 0 19
 .
+

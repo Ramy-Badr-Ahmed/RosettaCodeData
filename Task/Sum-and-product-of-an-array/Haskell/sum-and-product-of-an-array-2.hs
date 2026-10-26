@@ -1,6 +1,6 @@
-import Data.Array
-
-values = listArray (1,10) [1..10]
-
-s = sum . elems $ values
-p = product . elems $ values
+main :: IO ()
+main =
+  mapM_ print $
+    [ foldr (+) 0,
+      foldr (*) 1
+    ] <*> [[1 .. 10]]

@@ -1,7 +1,7 @@
 import extensions;
 import system'math;
 
-public program()
+public Program()
 {
     var n := 1;
 
@@ -10,5 +10,5 @@ public program()
         n += 1
     };
 
-    console.printLine(n)
+    Console.printLine(n)
 }

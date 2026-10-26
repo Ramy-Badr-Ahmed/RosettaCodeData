@@ -1,6 +1,12 @@
-switch[and] x nxor, y nxor {
-    case true: ...          # both true
-    case true, false: ...   # first true, second false
-    case false, true: ...   # first false, second true
-    default: ...            # both false
+val x, y = 20, 42
+
+switch[and] x == 20, y > 50 {
+    case true:
+        writeln "both true"
+    case true, false:
+        writeln "first true, second false"
+    case false, true:
+        writeln "first false, second true"
+    default:
+        writeln "both false"
 }

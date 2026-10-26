@@ -8,7 +8,7 @@ const string AllowedCharacters = " ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const int C = 100;
 const real P = 0.05r;
 
-rnd = randomGenerator;
+rnd = Random;
 
 randomChar
     = AllowedCharacters[rnd.nextInt(AllowedCharacters.Length)];
@@ -19,17 +19,17 @@ extension evoHelper
         = 0.repeatTill(self).selectBy::(x => randomChar).summarize(new StringWriter());
 
     fitnessOf(s)
-        = self.zipBy(s, (a,b => a==b ? 1 : 0)).summarize(new Integer()).toInt();
+        = self.zipBy(s, (a,b => (a==b) ? 1 : 0)).summarize(new Integer()).toInt();
 
     mutate(p)
-        = self.selectBy::(ch => rnd.nextReal() <= p ? randomChar : ch).summarize(new StringWriter());
+        = self.selectBy::(ch => (rnd.nextReal() <= p) ? randomChar : ch).summarize(new StringWriter());
 }
 
 class EvoAlgorithm : Enumerator
 {
-    object _target;
-    object _current;
-    object _variantCount;
+    object  _target;
+    object? _current;
+    object  _variantCount;
 
     constructor new(s,count)
     {
@@ -62,15 +62,15 @@ class EvoAlgorithm : Enumerator
     enumerable() => _target;
 }
 
-public program()
+public Program()
 {
     var attempt := new Integer();
     EvoAlgorithm.new(Target,C).forEach::(current)
     {
-        console
+        Console
             .printPaddingLeft(10,"#",attempt.append(1))
             .printLine(" ",current," fitness: ",current.fitnessOf(Target))
     };
 
-    console.readChar()
+    Console.readChar()
 }

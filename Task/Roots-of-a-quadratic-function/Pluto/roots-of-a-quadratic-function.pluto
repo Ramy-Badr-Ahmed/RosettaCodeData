@@ -1,0 +1,18 @@
+require "poly"
+local fmt = require "fmt"
+
+local function test(a, b, c)
+    local p = poly.ofvar(a, b, c)
+    local roots = p:roots()
+    fmt.print("%-16s -> roots: %s", p, fmt.swrite(roots))
+end
+
+local coeffs = {
+    {1, -2, 1},
+    {1,  0, 1},
+    {1, -10, 1},
+    {1, -1000, 1},
+    {1, -1e9, 1}
+}
+
+for coeffs as c do test(c[1], c[2], c[3]) end

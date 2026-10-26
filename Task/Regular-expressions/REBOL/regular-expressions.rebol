@@ -1,11 +1,11 @@
-REBOL [
+Rebol [
 	Title: "Regular Expression Matching"
 	URL: http://rosettacode.org/wiki/Regular_expression_matching
 ]
 
 string: "This is a string."
 
-; REBOL doesn't use a conventional Perl-compatible regular expression
+; Rebol doesn't use a conventional Perl-compatible regular expression
 ; syntax. Instead, it uses a variant Parsing Expression Grammar with
 ; the 'parse' function. It's also not limited to just strings. You can
 ; define complex grammars that actually parse and execute program

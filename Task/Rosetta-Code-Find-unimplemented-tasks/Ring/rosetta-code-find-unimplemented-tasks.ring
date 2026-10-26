@@ -50,10 +50,3 @@ func searchtitle(sn)
         ok
         return sn
 
-func count(cstring,dstring)
-       sum = 0
-       while substr(cstring,dstring) > 0
-               sum = sum + 1
-              cstring = substr(cstring,substr(cstring,dstring)+len(string(sum)))
-       end
-       return sum

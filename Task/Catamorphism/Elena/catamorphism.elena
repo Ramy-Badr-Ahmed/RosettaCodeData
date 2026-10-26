@@ -3,7 +3,7 @@ import system'routines;
 import extensions;
 import extensions'text;
 
-public program()
+public Program()
 {
     var numbers := new Range(1,10).summarize(new ArrayList());
 
@@ -13,5 +13,5 @@ public program()
 
     var concatenation := numbers.accumulate(new StringWriter(), (a,b => a.toPrintable() + b.toPrintable()));
 
-    console.printLine(summary," ",product," ",concatenation)
+    Console.printLine(summary," ",product," ",concatenation)
 }

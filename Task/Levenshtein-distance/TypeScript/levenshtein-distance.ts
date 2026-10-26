@@ -10,5 +10,6 @@
       }
       t = u;
     }
-    return u[n];
+    return u[n] ?? n;
   }
+

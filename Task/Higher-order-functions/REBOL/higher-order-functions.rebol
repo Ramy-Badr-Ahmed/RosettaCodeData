@@ -1,15 +1,18 @@
-REBOL [
+Rebol [
 	Title: "Function Argument"
 	URL: http://rosettacode.org/wiki/Function_as_an_Argument
 ]
 
 map: func [
-	"Apply function to contents of list, return new list."
-	f [function!] "Function to apply to list."
-	data [block! list!] "List to transform."
-	/local result i
+    "Apply function to contents of list, return new list."
+    f    [function!] "Function to apply to list."
+    data [any-block!] "List to transform."
+    /local result
 ][
-	result: copy []  repeat i data [append result f i]  result]
+    result: copy []
+    foreach i data [append result do f i]
+    result
+]
 
 square: func [
 	"Calculate x^2."

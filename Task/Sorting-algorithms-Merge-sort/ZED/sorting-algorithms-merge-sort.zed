@@ -1,86 +1,101 @@
 (append) list1 list2
-comment:
+=========
 #true
 (003) "append" list1 list2
 
-(car) pair
-comment:
+(cons) item list
+=========
 #true
-(002) "car" pair
-
-(cdr) pair
-comment:
-#true
-(002) "cdr" pair
-
-(cons) one two
-comment:
-#true
-(003) "cons" one two
+(003) "cons" item list
 
 (map) function list
-comment:
+=========
 #true
 (003) "map" function list
 
 (merge) comparator list1 list2
-comment:
+BRING IN COLLECT ARGUMENT
 #true
-(merge1) comparator list1 list2 nil
+(merge01) comparator list1 list2 nil
 
-(merge1) comparator list1 list2 collect
-comment:
+(merge01) comparator list1 list2 collect
+LIST2 EXHAUSTED
 (null?) list2
 (append) (reverse) collect list1
 
-(merge1) comparator list1 list2 collect
-comment:
+(merge01) comparator list1 list2 collect
+LIST1 EXHAUSTED
 (null?) list1
 (append) (reverse) collect list2
 
-(merge1) comparator list1 list2 collect
-comment:
-(003) comparator (car) list2 (car) list1
-(merge1) comparator list1 (cdr) list2 (cons) (car) list2 collect
+(merge01) comparator list1 list2 collect
+COMPARATOR CHOOSES LIST2
+(003) comparator (1) list2 (1) list1
+(merge01) comparator
+  list1
+  (!) list2
+  (cons) (1) list2 collect
 
-(merge1) comparator list1 list2 collect
-comment:
+(merge01) comparator list1 list2 collect
+NOW TAKE FROM LIST1 (PRIORITY STABILITY)
 #true
-(merge1) comparator (cdr) list1 list2 (cons) (car) list1 collect
+(merge01) comparator
+  (!) list1
+  list2
+  (cons) (1) list1 collect
 
 (null?) value
-comment:
+=========
 #true
 (002) "null?" value
 
 (reverse) list
-comment:
+=========
 #true
 (002) "reverse" list
 
 (sort) comparator jumble
-comment:
+PREPARE JUMBLE AND PERFORM MERGE PASSES
 #true
-(car) (sort11) comparator (sort1) jumble
+(sort03) comparator (sort02) comparator (sort01) jumble
 
-(sort1) jumble
-comment:
+(sort01) jumble
+PREPARE JUMBLE
 #true
 (map) "list" jumble
 
-(sort11) comparator jumble
-comment:
+(sort02) comparator jumble
+EMPTY JUMBLE
 (null?) jumble
 nil
 
-(sort11) comparator jumble
-comment:
-(null?) (cdr) jumble
+(sort02) comparator jumble
+ONE LIST JUMBLE
+(null?) (!) jumble
 jumble
 
-(sort11) comparator jumble
-comment:
+(sort02) comparator jumble
+PERFORM MERGE PASS
 #true
-(sort11) comparator
-         (cons) (merge) comparator (car) jumble (002) "cadr" jumble
-                (sort11) comparator (002) "cddr" jumble
+(cons) (merge) comparator (1) jumble (1) (!) jumble
+  (sort02) comparator (!) (!) jumble
+
+(sort03) comparator jumble
+EMPTY JUMBLE
+(null?) jumble
+nil
+
+(sort03) comparator jumble
+ONE LIST JUMBLE
+(null?) (!) jumble
+(1) jumble
+
+(sort03) comparator jumble
+PERFORM MERGE PASS AND RESTART
+#true
+(sort03) comparator (sort02) comparator jumble
+
+(main)
+ENTRY POINT
+#true
+(002) "display" (sort) ">" (010) "list" 4 3 5 6 8 7 1 2 9

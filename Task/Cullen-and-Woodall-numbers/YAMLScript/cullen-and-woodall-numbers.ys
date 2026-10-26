@@ -1,0 +1,18 @@
+!ys-0
+
+defn main(limit=12):
+  each n (1 .. limit):
+    c =: n:cullen
+    w =: n:woodall
+    say: "$n: C=$c prime=$(prime?(c)) W=$w prime=$(prime?(w))"
+
+defn cullen(n):
+  (n * (2 ** n)).++
+
+defn woodall(n):
+  (n * (2 ** n)).--
+
+defn prime?(n):
+  (n > 1) &&
+  range(2 n:sqrt:I.++)
+  .every?(\((n % _).?))

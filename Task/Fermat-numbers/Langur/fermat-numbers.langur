@@ -1,14 +1,14 @@
-val fermat = fn i: 2 ^ 2 ^ i + 1
+val fermat = fn(i) { 2 ^ 2 ^ i + 1 }
 val sz = '\u2080' # small zero code point
 
 val factors = fn(var x) {
     for[f=[]] i, s = 2, trunc(x ^/ 2); i < s; i += 1 {
         if x div i {
-            f ~= [i]
+            f &= [i]
             x \= i
             s = trunc(x ^/ 2)
         }
-    } ~ [x]
+    } & [x]
 }
 
 writeln "first 10 Fermat numbers"

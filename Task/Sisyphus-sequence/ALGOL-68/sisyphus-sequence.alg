@@ -1,24 +1,16 @@
 BEGIN # generate elements of the Sysiphus Sequence: see OEIS A350877         #
 
-    # returns the largest element in a                                       #
-    OP   MAX = ( []INT a )INT:
-         IF LWB a >UPB a THEN 0
-         ELSE
-            INT result := a[ LWB a ];
-            FOR i FROM LWB a + 1 TO UPB a DO
-                IF result < a[ i ] THEN result := a[ i ] FI
-            OD;
-            result
-         FI # MAX # ;
+    PR read "rows.incl.a68" PR               # include row (array) utilities #
+
     # sieve the primes                                                       #
-    INT sieve max = 1 000 000 000; ### CHANGE TO E.G.: 100 000 000 FOR ALGOL 68G ###
+    INT sieve max = 100 000 000;  ### 10 000 000 for ALGOL 68 Genie version 3 #
     BOOL is odd  := TRUE;
     [ sieve max ]BOOL sieve; FOR i TO UPB sieve DO sieve[ i ] := is odd; is odd := NOT is odd OD;
     sieve[ 1 ] := FALSE;
     sieve[ 2 ] := TRUE;
-    FOR s FROM 3 BY 2 TO ENTIER sqrt( sieve max ) DO
-        IF sieve[ s ] THEN
-            FOR p FROM s * s BY s TO sieve max DO sieve[ p ] := FALSE OD
+    FOR s pos FROM 3 BY 2 TO ENTIER sqrt( sieve max ) DO
+        IF sieve[ s pos ] THEN
+            FOR p FROM s pos * s pos BY s pos TO sieve max DO sieve[ p ] := FALSE OD
         FI
     OD;
     [ 1 : 250 ]INT pos;                # positions of 1..250 in the sequence #
@@ -96,5 +88,6 @@ BEGIN # generate elements of the Sysiphus Sequence: see OEIS A350877         #
     FOR i TO 100 DO
         print( ( IF pos[ i ] = 0 THEN " unknown" ELSE whole( pos[ i ], -8 ) FI ) );
         IF i MOD 8 = 0 THEN print( ( newline ) ) FI
-    OD
+    OD;
+    print( ( newline ) )
 END

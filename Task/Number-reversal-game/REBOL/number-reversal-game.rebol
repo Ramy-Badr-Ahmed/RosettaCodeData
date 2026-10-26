@@ -1,4 +1,4 @@
-REBOL []
+Rebol []
 
 print "NUMBER REVERSAL GAME"
 
@@ -7,7 +7,7 @@ goal: [1 2 3 4 5 6 7 8 9]
 random/seed now
 
 until [
-    jumble: random goal
+    jumble: random copy goal
     jumble != goal ; repeat in the unlikely case that jumble isn't jumbled
 ]
 

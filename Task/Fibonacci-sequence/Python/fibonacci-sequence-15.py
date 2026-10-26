@@ -1,21 +1,21 @@
-'''Nth Fibonacci term (by folding)'''
+def fibs(n):
+    """Fibonacci accumulation
 
-from functools import reduce
-from operator import add
+    An accumulation of the first n integers in the Fibonacci series. The accumulator is a
+    pair of the two preceding numbers.
+    """
+    # Local import is more efficient.
+    from itertools import accumulate
 
-
-# nthFib :: Integer -> Integer
-def nthFib(n):
-    '''Nth integer in the Fibonacci series.'''
-    def go(ab, _):
-        return ab[1], add(*ab)
-    return reduce(go, range(1, n), (0, 1))[1]
+    # Note: Numbers generated in range(1, n) [or range(n-1)] call will not be used.
+    return [a for a, b in accumulate(
+        range(1, n),
+        lambda acc, _: (acc[1],  sum(acc)),
+        initial = (0, 1)
+        )
+    ]
 
 
 # MAIN ---
 if __name__ == '__main__':
-    print(
-        '1000th term: ' + repr(
-            nthFib(1000)
-        )
-    )
+    print(f'First twenty: {fibs(20)}')

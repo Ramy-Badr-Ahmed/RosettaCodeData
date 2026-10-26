@@ -1,4 +1,4 @@
-rebol [author: "Nick Antonaccio"]
+Rebol [author: "Nick Antonaccio"]
 write/append %rdb ""  db: load %rdb
 switch system/options/args/1 [
     "new" [write/append %rdb rejoin [now " " mold/only next system/options/args newline]]

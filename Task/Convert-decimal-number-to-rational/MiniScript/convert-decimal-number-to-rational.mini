@@ -1,0 +1,9 @@
+import "fmt"
+import "rat"
+
+tests = [0.905405, 0.518518, 0.75, 0.9054054]
+for test in tests
+    r = rat.ofVal(test)
+    test = fmt.str(str(test), -9)
+    fmt.print "{} -> {}", test, r.str
+end for

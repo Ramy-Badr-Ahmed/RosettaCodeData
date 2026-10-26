@@ -1,0 +1,1 @@
+ls = read(`ls`, String)

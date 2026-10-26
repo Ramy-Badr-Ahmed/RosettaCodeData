@@ -1,0 +1,13 @@
+/* Two lists, one of four symbolic variables and one of one-digit primes */
+syms: [a, b, c, d]$
+digits: [2, 3, 5, 7]$
+/* Function that returns a symbolic expression which evaluates to an n-digit number when supplied with its digits */
+form(n) := lreduce(lambda([x, y], 10*x+y), firstn(syms, n))$
+/* Function that returns a list of all n-digit numbers whose digits are all prime */
+alldigitsprime(n) := apply(create_list, cons(form(n), join(firstn(syms, n), makelist(digits, n))))$
+/* Make a list containing all such numbers for n from 1 to 4 */
+poss_extraprimes: flatten(makelist(alldigitsprime(i), i, 1, 4))$
+/* Function that returns the digital sum of a number with at most nd digits */
+digsum(n, nd) := sum(mod(floor(n/10^i), 10), i, 0, nd-1)$
+/* Filter for primes and then filter again for primality of digital sums */
+sublist(sublist(poss_extraprimes, primep), lambda([p], primep(digsum(p, 4))));

@@ -1,4 +1,4 @@
-val perfectsquare = fn n: (n ^/ 2) div 1
+val perfectsquare = fn(n) { (n ^/ 2) div 1 }
 
 val israre = fn(n) {
     val r = reverse(n)
@@ -11,19 +11,9 @@ val israre = fn(n) {
 val findfirst = fn(mx) {
     for[=[]] i = 0; len(_for) < mx; i += 1 {
         if israre(i) {
-            _for ~= [i]
+            _for &= [i]
         }
     }
 }
 
-val findandprint = impure fn(mx) {
-    for[cnt=0] i = 0; cnt < mx ; i += 1 {
-        if israre(i) {
-            writeln "\n rare ", i, " "
-            cnt += 1
-        }
-    }
-}
-
-# if you have the time...
-writeln "the first 5 rare numbers: ", findfirst(5)
+writeln findfirst(5)

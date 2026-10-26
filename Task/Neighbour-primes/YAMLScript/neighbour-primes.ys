@@ -1,0 +1,15 @@
+!ys-0
+
+defn main(n=1000):
+  below =:
+    loop k n.--:
+      if prime?(k): k recur(k.--)
+  above =:
+    loop k n.++:
+      if prime?(k): k recur(k.++)
+  say: "$below < $n < $above"
+
+defn prime?(n):
+  (n > 1) &&
+  range(2 n:sqrt:I.++)
+  .every?(\((n % _).?))

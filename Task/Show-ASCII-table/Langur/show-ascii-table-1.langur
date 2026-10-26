@@ -1,0 +1,7 @@
+for i of 16 {
+    for j in series(31+i..127, inc=16) {
+        val c = switch(j; 32: "spc"; 127: "del"; cp2s(j))
+        write "{{j:3}} : {{c:-4}}"
+    }
+    writeln()
+}

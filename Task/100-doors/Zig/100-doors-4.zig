@@ -1,8 +1,10 @@
-pub fn main() !void {
-    const stdout = @import("std").io.getStdOut().writer();
+const std = @import("std");
 
-    var door: u8 = 1;
-    while (door * door <= 100) : (door += 1) {
+pub fn main(init: std.process.Init) !void {
+    var stdout_writer = std.Io.File.stdout().writer(init.io, &.{});
+    const stdout = &stdout_writer.interface;
+
+    for (1..11) |door| {
         try stdout.print("Door {d} is open\n", .{door * door});
     }
 }

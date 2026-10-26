@@ -1,56 +1,71 @@
 ranks: 1..13
-suits: [`♣`, `♦`, `♥`, `♠`]
+suits: ['♣', '♦', '♥', '♠']
 
-define :card [rank, suit][
-    init: [
-        ensure ->
-            and? -> contains? ranks this\rank
-                 -> contains? suits this\suit
+rank?: $ => [in? & ranks]
+suit?: $ => [in? & suits]
+
+interleave: $[
+    xs :block :dictionary :range
+    ys :block :dictionary :range
+    apply :literal
+][
+    flatten map xs 'x
+        -> map ys 'y
+        -> call apply @[x y]
+]
+
+define :Card [
+    init: method [rank :integer suit :char][
+        ensure -> rank? rank
+        ensure -> suit? suit
+
+        this\rank: rank
+        this\suit: suit
     ]
 
-    print: [
-        R: ø
-        case [this\rank=]
-            when? [1] -> R: `A`
-            when? [11]-> R: `J`
-            when? [12]-> R: `Q`
-            when? [13]-> R: `K`
-            else -> R: this\rank
+    string: method [][
+        R: case this\rank [
+            1       -> 'A'
+            11      -> 'J'
+            12      -> 'Q'
+            13      -> 'K'
+            any     -> this\rank
+        ]
         ~{|R||this\suit|}
     ]
 ]
 
-define :deck [][
-    init: [
-        this\cards: []
-        loop ranks 'rank ->
-            loop suits 'suit ->
-                this\cards: this\cards ++ to :card @[rank, suit]
-    ]
+card: $[rank :integer suit :char][
+    to :Card [rank suit]!
 ]
 
-shuffleUp: function [this :deck][
-    this\cards: shuffle this\cards
-]
-
-deal: function [this :deck, cnt :integer][
-    if cnt > size this\cards ->
-        panic "Not enough cards in deck"
-
-    cards: []
-    do.times: cnt [
-        dealt: sample this\cards
-        'cards ++ dealt
-        this\cards: remove this\cards dealt
+define :Deck [
+    init: method [][
+        this\cards: interleave ranks suits 'card
     ]
-    return cards
+
+    shuffle: method [][
+        shuffle 'this\cards
+    ]
+
+    deal: method [][
+        ensure.that: "Not enough cards in deck"
+            -> not? empty? \cards
+
+        \shuffle
+        pop 'this\cards
+    ]
+
+    dealMany: method [times :integer][
+        map 1..times 'x -> \deal
+    ]
 ]
 
 ; create a new deck
-Deck: to :deck []
+deck: to :Deck []!
 
 ; and shuffle it
-shuffleUp Deck
+deck\shuffle
 
 ; deal 5 cards
-print deal Deck 5
+print deck\dealMany 5

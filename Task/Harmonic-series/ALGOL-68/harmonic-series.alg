@@ -1,13 +1,13 @@
-BEGIN # find some harmonic numbers, Hn is the sum if the reciprocals of 1..n #
+BEGIN # find some harmonic numbers, Hn is the sum of the reciprocals of 1..n #
     # returns the first n Harmonic numbers #
     OP   HARMONIC = ( INT n )[]REAL:
          BEGIN
-            [ 1 : n ]REAL h;
-            h[ 1 ] := 1;
+            [ 1 : n ]REAL hs;
+            hs[ 1 ] := 1;
             FOR i FROM 2 TO n DO
-                h[ i ] := h[ i - 1 ] + ( 1 / i )
+                hs[ i ] := hs[ i - 1 ] + ( 1 / i )
             OD;
-            h
+            hs
          END # HARMONIC # ;
     # find the first 20 000 harmonic numbers #
     []REAL h = HARMONIC 20 000;
@@ -21,7 +21,8 @@ BEGIN # find some harmonic numbers, Hn is the sum if the reciprocals of 1..n #
     FOR i TO UPB h DO
         IF h[ i ] > rqd real THEN
             # found the first harmonic number greater than rqd real #
-            print( ( "Position of the first harmonic number > ", whole( rqd int, -2 ), ": ", whole( i, 0 ), newline ) );
+            print( ( "Position of the first harmonic number > ", whole( rqd int, -2 ) ) );
+            print( ( ": ", whole( i, 0 ), newline ) );
             rqd int  +:= 1;
             rqd real +:= 1
         FI

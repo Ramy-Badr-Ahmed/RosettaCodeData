@@ -1,5 +1,5 @@
 #!/bin/bash
-# michaeltd	2019-11-29 https://github.com/michaeltd/dots/blob/master/dot.files/.bashrc.d/.var/morse.sh
+# michaeltd 2019-11-29 https://github.com/michaeltd/dots/blob/master/dot.files/.bashrc.d/.var/morse.sh
 # https://en.wikipedia.org/wiki/Morse_code
 # International Morse Code
 # 1. Length of dot is 1 unit
@@ -47,3 +47,4 @@ alpha2morse() {
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
    alpha2morse "${@}"
 fi
+

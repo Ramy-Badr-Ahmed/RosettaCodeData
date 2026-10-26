@@ -1,9 +1,9 @@
 import system'routines;
 import extensions;
 
-public program()
+public Program()
 {
-    console.printLine(console.readLine()
+   Console.printLine(Console.readLine()
                               .split()
                               .selectBy(mssgconst toInt<intConvertOp>[1])
                               .summarize())

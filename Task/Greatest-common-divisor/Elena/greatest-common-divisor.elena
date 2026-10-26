@@ -17,10 +17,10 @@ gcd(a,b)
 
 printGCD(a,b)
 {
-    console.printLineFormatted("GCD of {0} and {1} is {2}", a, b, gcd(a,b))
+    Console.printLineFormatted("GCD of {0} and {1} is {2}", a, b, gcd(a,b))
 }
 
-public program()
+public Program()
 {
     printGCD(1,1);
     printGCD(1,10);

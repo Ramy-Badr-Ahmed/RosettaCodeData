@@ -1,0 +1,14 @@
+import net'http;
+import mbedtls'client'registration;
+
+public Program()
+{
+   using(HttpClient client := HttpClient.open("https://www.google.com"))
+   {
+      HttpResponse response := client.get();
+
+      string content := response.readAsString();
+
+      Console.writeLine(content);
+   };
+}

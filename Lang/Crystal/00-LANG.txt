@@ -6,7 +6,8 @@
 |strength=strong
 |checking=static
 |compat=duck
-|site=http://crystal-lang.org}}
+|site=http://crystal-lang.org
+|hopl=no, HOPL only has an older "Crystal" language from 1986}}
 Crystal is a programming language with the following goals:
 * Have the same syntax as Ruby, or at least as similar as possible.
 * Never have to specify the type of a variable or method argument.
@@ -14,4 +15,7 @@ Crystal is a programming language with the following goals:
 * Have compile-time evaluation and generation of code, to avoid boilerplate code.
 * Compile to efficient native code.
 
-You can ask for help on Freenode in the #crystal-lang channel.
+You can ask for help on LiberaChat in the [ircs://irc.libera.chat:6697#crystal-lang #crystal-lang] channel ([https://web.libera.chat/#crystal-lang web]).
+
+==Tasks not implemented in Crystal==
+[[Tasks not implemented in Crystal]]

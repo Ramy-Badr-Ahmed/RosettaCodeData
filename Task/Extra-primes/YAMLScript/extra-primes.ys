@@ -1,0 +1,16 @@
+!ys-0
+
+defn main(limit=200):
+  each n (2 .. limit):
+    ones =: n % 10
+    when ones != 0:
+      r =: n:S:reverse:I
+      when n != r:
+        when prime?(n):
+          when prime?(r):
+            say: n
+
+defn prime?(n):
+  (n > 1) &&
+  range(2 n:sqrt:I.++)
+  .every?(\((n % _).?))

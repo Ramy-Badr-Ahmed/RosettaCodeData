@@ -1,0 +1,16 @@
+!ys-0
+
+defn main(n=10001):
+  say: n:nth-prime
+
+defn nth-prime(n):
+  loop candidate 2, count 0:
+    count :if prime?(candidate) +=: 1
+    if count == n:
+      candidate
+      recur(candidate.++ count)
+
+defn prime?(n):
+  (n > 1) &&
+  range(2 n:sqrt:I.++)
+  .every?(\((n % _).?))

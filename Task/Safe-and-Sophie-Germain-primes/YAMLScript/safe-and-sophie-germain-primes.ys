@@ -1,0 +1,12 @@
+!ys-0
+
+defn main(limit=1000):
+  sophie =: (2 .. limit).filter(\(prime?(_) && prime?((2 * _) + 1)))
+  safe =: (2 .. limit).filter(\(prime?(_) && prime?((_.-- // 2))))
+  say: "Sophie Germain: $(sophie:joins)"
+  say: "Safe primes: $(safe:joins)"
+
+defn prime?(n):
+  (n > 1) &&
+  range(2 n:sqrt:I.++)
+  .every?(\((n % _).?))

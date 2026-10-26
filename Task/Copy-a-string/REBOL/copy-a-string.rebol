@@ -1,4 +1,4 @@
-REBOL [
+Rebol [
     Title: "String Copy"
     URL: http://rosettacode.org/wiki/Copy_a_string
 ]

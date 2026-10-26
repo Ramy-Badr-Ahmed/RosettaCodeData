@@ -1,4 +1,4 @@
-REBOL [
+Rebol [
 	Title: "Graphical User Input"
 	URL: http://rosettacode.org/wiki/User_Input_-_graphical
 ]

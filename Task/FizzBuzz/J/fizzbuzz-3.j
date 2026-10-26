@@ -1,5 +1,1 @@
-Fizz=: 'Fizz' #~ 0 = 3&|
-Buzz=: 'Buzz' #~ 0 = 5&|
-FizzBuzz=: ": [^:('' -: ]) Fizz,Buzz
-
-FizzBuzz"0 >: i.100
+>((2#.0=5 3|]){Fizz`Buzz`FizzBuzz;~":)&>1+i.100

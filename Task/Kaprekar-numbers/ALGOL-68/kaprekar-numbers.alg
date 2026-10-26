@@ -8,6 +8,9 @@ PROC is kaprekar = ( INT n )BOOL:
      ELIF n = 1 THEN
          # 1 is defined to be a Kaprekar number           #
          TRUE
+     ELIF n MOD 9 > 1 THEN
+         # n can't be Kaprekar if n MOD 9 is not 0 or 1   #
+         FALSE
      ELSE
          # n is a Kaprekar number if the digits of its    #
          # square can be partitioned into two numbers     #
@@ -29,7 +32,6 @@ PROC is kaprekar = ( INT n )BOOL:
 # printing all those below 10 000                         #
 INT max number           = 1 000 000;
 INT k count             := 0;
-[ 1 : 2 ]LONG INT split := ( 0, 0 );
 print( ( "Kaprekar numbers below 10 000: ", newline ) );
 FOR n TO max number DO
     IF is kaprekar( n ) THEN

@@ -27,20 +27,20 @@ extension op
     }
 }
 
-public program()
+public Program()
 {
-    var blocks := new string[]{"BO", "XK", "DQ", "CP", "NA",
-		"GT", "RE", "TG", "QD", "FS",
-		"JW", "HU", "VI", "AN", "OB",
-		"ER", "FS", "LY", "PC", "ZM"};
+    auto blocks := new const string[]{"BO", "XK", "DQ", "CP", "NA",
+      "GT", "RE", "TG", "QD", "FS",
+      "JW", "HU", "VI", "AN", "OB",
+      "ER", "FS", "LY", "PC", "ZM"};
 
-    var words := new string[]{"", "A", "BARK", "BOOK", "TREAT", "COMMON", "SQUAD", "Confuse"};
+    auto words := new const string[]{"", "A", "BARK", "BOOK", "TREAT", "COMMON", "SQUAD", "Confuse"};
 
     Enumerator e := words.enumerator();
     e.next();
 
     words.forEach::(word)
     {
-        console.printLine("can make '",word,"' : ",word.canMakeWordFrom(blocks));
+        Console.printLine("can make '",word,"' : ",word.canMakeWordFrom(blocks));
     }
 }

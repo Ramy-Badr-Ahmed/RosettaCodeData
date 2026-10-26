@@ -1,4 +1,4 @@
-REBOL [
+Rebol [
 	Title: "List Indexing"
 	URL: http://rosettacode.org/wiki/Index_in_a_list
 ]

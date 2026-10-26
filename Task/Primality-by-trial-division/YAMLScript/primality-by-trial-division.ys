@@ -1,0 +1,9 @@
+!ys-0
+
+defn main(n=29):
+  say: "$n prime? $(prime?(n))"
+
+defn prime?(n):
+  (n > 1) &&
+  range(2 n:sqrt:I.++)
+  .every?(\((n % _).?))

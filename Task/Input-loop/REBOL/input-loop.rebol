@@ -1,4 +1,4 @@
-REBOL [
+Rebol [
 	Title: "Basic Input Loop"
 	URL: http://rosettacode.org/wiki/Basic_input_loop
 ]

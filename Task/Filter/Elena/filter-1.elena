@@ -3,11 +3,11 @@ import system'math;
 import extensions;
 import extensions'routines;
 
-public program()
+public Program()
 {
     auto array := new int[]{1,2,3,4,5};
 
     var evens := array.filterBy::(n => n.mod(2) == 0).toArray();
 
-    evens.forEach(printingLn)
+    evens.forEach(PrintingLn)
 }

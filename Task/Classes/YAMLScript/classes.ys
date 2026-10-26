@@ -1,0 +1,22 @@
+!ys-0
+
+defn main():
+  alice =: make-person('Alice' 30)
+  bob =: make-person('Bob' 25)
+
+  say: alice:greet
+  say: bob:greet
+
+  say: "Alice's age is $(alice.age)"
+
+  older =: alice:birthday
+  say: older:greet
+
+defn make-person(name age):
+  +{:name name, :age age}
+
+defn greet(p):
+  "Hi, I'm $(p.name) and I'm $(p.age) years old."
+
+defn birthday(p):
+  p.assoc(:age p.age.++)

@@ -4,4 +4,4 @@ write %output.txt read %input.txt
 write/binary %output.txt read/binary %input.txt
 
 ; Save a web page:
-write/binary %output.html read http://rosettacode.org
+write %output.html read http://example.com

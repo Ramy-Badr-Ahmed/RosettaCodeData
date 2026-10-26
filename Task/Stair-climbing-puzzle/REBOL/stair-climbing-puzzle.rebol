@@ -1,4 +1,4 @@
-REBOL [
+Rebol [
     Title: "Stair Climber"
     URL: http://rosettacode.org/wiki/Stair_Climbing
 ]

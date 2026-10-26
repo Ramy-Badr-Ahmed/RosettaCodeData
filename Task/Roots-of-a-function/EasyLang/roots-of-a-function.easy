@@ -1,8 +1,8 @@
 func f x .
    return x * x * x - 3 * x * x + 2 * x
 .
-numfmt 6 0
-proc findroot start stop step . .
+numfmt 0 6
+proc findroot start stop step .
    x = start
    while x <= stop
       val = f x
@@ -15,12 +15,24 @@ proc findroot start stop step . .
       x += step
    .
 .
-proc drawfunc start stop . .
-   linewidth 0.3
-   drawgrid
+proc lineto x y .
+   x = x * 10 + 50
+   y = y * 10 + 50
+   glineto x y
+.
+proc drawfunc start stop .
+   glinewidth 0.1
+   for i = 5 step 5 to 95
+      gline 0 i 100 i
+      gline i 0 i 100
+   .
+   glinewidth 0.3
+   gline 0 50 100 50
+   gline 50 0 50 100
    x = start
+   gpenup
    while x <= stop
-      line x * 10 + 50 f x * 10 + 50
+      lineto x f x
       x += 0.1
    .
 .

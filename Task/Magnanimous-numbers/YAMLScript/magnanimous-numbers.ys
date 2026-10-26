@@ -1,0 +1,19 @@
+!ys-0
+
+defn main(limit=30):
+  say: (1 .. 10000).filter(magnanimous?)
+       .take(limit):joins
+
+defn magnanimous?(n):
+  s =: n:S
+  (s.# < 2) ||:
+    every? _ (1 .. s.#.--):
+      fn(i):
+        a =: subs(s 0 i):I
+        b =: subs(s i):I
+        prime?: a + b
+
+defn prime?(n):
+  (n > 1) &&
+  range(2 n:sqrt:I.++)
+  .every?(\((n % _).?))

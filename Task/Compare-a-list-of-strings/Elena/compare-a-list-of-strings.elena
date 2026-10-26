@@ -26,13 +26,13 @@ testCases
          new string[]{"AA","ACB","BB","CC"},
          new string[]{"single_element"}};
 
-public program()
+public Program()
 {
     testCases.forEach::(list)
         {
-            console.printLine(list.asEnumerable()," all equal - ",list.isEqual());
-            console.printLine(list.asEnumerable()," ascending - ",list.isAscending())
+            Console.printLine(list.asEnumerable()," all equal - ",list.isEqual());
+            Console.printLine(list.asEnumerable()," ascending - ",list.isAscending())
         };
 
-    console.readChar()
+    Console.readChar()
 }

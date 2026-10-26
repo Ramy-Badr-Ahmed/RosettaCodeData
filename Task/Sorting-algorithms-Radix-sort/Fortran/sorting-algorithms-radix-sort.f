@@ -1,25 +1,25 @@
       SUBROUTINE VARRADIX(A , Siz)
 
 !
-!	No Copyright is exerted due to considerable prior art in the Public Domain.
+!  No Copyright is exerted due to considerable prior art in the Public Domain.
 !       This Fortran version by Peter Kelly ~ peter.kelly@acm.org
 !
-!	Permission is hereby granted, free of charge, to any person obtaining
-!	a copy of this software and associated documentation files (the
-!	"Software"), to deal in the Software without restriction, including
-!	without limitation the rights to use, copy, modify, merge, publish,
-!	distribute, sublicense, and/or sell copies of the Software, and to
-!	permit persons to whom the Software is furnished to do so, subject to
-!	the following conditions:
-!	The above copyright notice and this permission notice shall be
-!	included in all copies or substantial portions of the Software.
-!	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-!	EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-!	MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-!	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-!	CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-!	TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-!	SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+!  Permission is hereby granted, free of charge, to any person obtaining
+!  a copy of this software and associated documentation files (the
+!  "Software"), to deal in the Software without restriction, including
+!  without limitation the rights to use, copy, modify, merge, publish,
+!  distribute, sublicense, and/or sell copies of the Software, and to
+!  permit persons to whom the Software is furnished to do so, subject to
+!  the following conditions:
+!  The above copyright notice and this permission notice shall be
+!  included in all copies or substantial portions of the Software.
+!  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+!  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+!  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+!  IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+!  CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+!  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+!  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 !
 !
 !     LSD sort with a configurable RADIX, Using a RADIX of 256 performs well, hence I have defaulted it in. It is snarly fast.
@@ -108,25 +108,25 @@
       MODULE LEASTSIG
       IMPLICIT NONE
 !
-!	No Copyright is exerted due to considerable prior art in the Public Domain.
+!  No Copyright is exerted due to considerable prior art in the Public Domain.
 !       This Fortran version by Peter Kelly ~ peter.kelly@acm.org
 !
-!	Permission is hereby granted, free of charge, to any person obtaining
-!	a copy of this software and associated documentation files (the
-!	"Software"), to deal in the Software without restriction, including
-!	without limitation the rights to use, copy, modify, merge, publish,
-!	distribute, sublicense, and/or sell copies of the Software, and to
-!	permit persons to whom the Software is furnished to do so, subject to
-!	the following conditions:
-!	The above copyright notice and this permission notice shall be
-!	included in all copies or substantial portions of the Software.
-!	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-!	EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-!	MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-!	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-!	CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-!	TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-!	SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+!  Permission is hereby granted, free of charge, to any person obtaining
+!  a copy of this software and associated documentation files (the
+!  "Software"), to deal in the Software without restriction, including
+!  without limitation the rights to use, copy, modify, merge, publish,
+!  distribute, sublicense, and/or sell copies of the Software, and to
+!  permit persons to whom the Software is furnished to do so, subject to
+!  the following conditions:
+!  The above copyright notice and this permission notice shall be
+!  included in all copies or substantial portions of the Software.
+!  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+!  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+!  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+!  IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+!  CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+!  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+!  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 !
 !     Implementation of a classic Radix Sort LSD style :)
 !     Works well, Integers only but it goes faster than a comparison sort
@@ -193,25 +193,25 @@
 !
       SUBROUTINE FASTLSDRAD(Dataset , Scratch , Dsize)
 !
-!	No Copyright is exerted due to considerable prior art in the Public Domain.
+!  No Copyright is exerted due to considerable prior art in the Public Domain.
 !       This Fortran version by Peter Kelly ~ peter.kelly@acm.org
 !
-!	Permission is hereby granted, free of charge, to any person obtaining
-!	a copy of this software and associated documentation files (the
-!	"Software"), to deal in the Software without restriction, including
-!	without limitation the rights to use, copy, modify, merge, publish,
-!	distribute, sublicense, and/or sell copies of the Software, and to
-!	permit persons to whom the Software is furnished to do so, subject to
-!	the following conditions:
-!	The above copyright notice and this permission notice shall be
-!	included in all copies or substantial portions of the Software.
-!	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-!	EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-!	MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-!	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-!	CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-!	TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-!	SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+!  Permission is hereby granted, free of charge, to any person obtaining
+!  a copy of this software and associated documentation files (the
+!  "Software"), to deal in the Software without restriction, including
+!  without limitation the rights to use, copy, modify, merge, publish,
+!  distribute, sublicense, and/or sell copies of the Software, and to
+!  permit persons to whom the Software is furnished to do so, subject to
+!  the following conditions:
+!  The above copyright notice and this permission notice shall be
+!  included in all copies or substantial portions of the Software.
+!  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+!  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+!  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+!  IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+!  CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+!  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+!  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 !
 !     This LSD sort is optimized to a base 16,Radix 256 sort which is about as fast as LSD gets. As well as a fast
 !     algorithm, it has great cache coherency so performs exceptionally on large data sets,
@@ -294,161 +294,115 @@
 !***************************************************************************
 !                            End of Superfast LSD sort
 !***************************************************************************
-*=======================================================================
-* RSORT - sort a list of integers by the Radix Sort algorithm
-* Public domain.  This program may be used by any person for any purpose.
-* Origin:  Herman Hollerith, 1887
-*
-*___Name____Type______In/Out____Description_____________________________
-*   IX(N)   Integer   Both      Array to be sorted in increasing order
-*   IW(N)   Integer   Neither   Workspace
-*   N       Integer   In        Length of array
-*
-* ASSUMPTIONS:  Bits in an INTEGER is an even number.
-*               Integers are represented by twos complement.
-*
-* NOTE THAT:  Radix sorting has an advantage when the input is known
-*             to be less than some value, so that only a few bits need
-*             to be compared.  This routine looks at all the bits,
-*             and is thus slower than Quicksort.
-*=======================================================================
-      SUBROUTINE RSORT (IX, IW, N)
-       IMPLICIT NONE
-       INTEGER IX, IW, N
-       DIMENSION IX(N), IW(N)
+!
+! Performs a MSD radi sort using bits.
+! It sorts only using the bit size of the largest and smallest numbers
+! So, on small numbers < 128, it's faster than a Quicksort for very large numbers > 20 bits
+! It's slower.
+! Author: Peter Kelly
+! No claim is made on the code and no warranty implied.
+module msd_bit_sort_module
+    implicit none
+    private
+    public :: msd_bit_sort
 
-       INTEGER I,                        ! count bits
-     $         ILIM,                     ! bits in an integer
-     $         J,                        ! count array elements
-     $         P1OLD, P0OLD, P1, P0,     ! indices to ones and zeros
-     $         SWAP
-       LOGICAL ODD                       ! even or odd bit position
+contains
+    ! Transform signed integer to make it comparable
+    PURE FUNCTION transform_for_sort(x) RESULT(transformed)
+        INTEGER, INTENT(IN) :: x
+        INTEGER :: transformed
 
-*      IF (N < 2) RETURN      ! validate
-*
-        ILIM = Bit_size(i)    !Get the fixed number of bits
-*=======================================================================
-* Alternate between putting data into IW and into IX
-*=======================================================================
-       P1 = N+1
-       P0 = N                ! read from 1, N on first pass thru
-       ODD = .FALSE.
-       DO I = 0, ILIM-2
-         P1OLD = P1
-         P0OLD = P0         ! save the value from previous bit
-         P1 = N+1
-         P0 = 0                 ! start a fresh count for next bit
-
-         IF (ODD) THEN
-           DO J = 1, P0OLD, +1             ! copy data from the zeros
-             IF ( BTEST(IW(J), I) ) THEN
-               P1 = P1 - 1
-               IX(P1) = IW(J)
-             ELSE
-               P0 = P0 + 1
-               IX(P0) = IW(J)
-             END IF
-           END DO
-           DO J = N, P1OLD, -1             ! copy data from the ones
-             IF ( BTEST(IW(J), I) ) THEN
-               P1 = P1 - 1
-               IX(P1) = IW(J)
-             ELSE
-               P0 = P0 + 1
-              IX(P0) = IW(J)
-             END IF
-           END DO
-
-         ELSE
-           DO J = 1, P0OLD, +1             ! copy data from the zeros
-             IF ( BTEST(IX(J), I) ) THEN
-               P1 = P1 - 1
-               IW(P1) = IX(J)
-              ELSE
-               P0 = P0 + 1
-               IW(P0) = IX(J)
-             END IF
-           END DO
-           DO J = N, P1OLD, -1            ! copy data from the ones
-             IF ( BTEST(IX(J), I) ) THEN
-               P1 = P1 - 1
-               IW(P1) = IX(J)
-             ELSE
-               P0 = P0 + 1
-               IW(P0) = IX(J)
-             END IF
-          END DO
-         END IF  ! even or odd i
-
-         ODD = .NOT. ODD
-       END DO  ! next i
-
-*=======================================================================
-*        the sign bit
-*=======================================================================
-       P1OLD = P1
-       P0OLD = P0
-       P1 = N+1
-       P0 = 0
-
-*          if sign bit is set, send to the zero end
-       DO J = 1, P0OLD, +1
-         IF ( BTEST(IW(J), ILIM-1) ) THEN
-           P0 = P0 + 1
-           IX(P0) = IW(J)
-         ELSE
-           P1 = P1 - 1
-           IX(P1) = IW(J)
-         END IF
-       END DO
-       DO J = N, P1OLD, -1
-         IF ( BTEST(IW(J), ILIM-1) ) THEN
-           P0 = P0 + 1
-           IX(P0) = IW(J)
-         ELSE
-           P1 = P1 - 1
-           IX(P1) = IW(J)
-         END IF
-       END DO
-
-*=======================================================================
-*       Reverse the order of the greater value partition
-*=======================================================================
-       P1OLD = P1
-       DO J = N, (P1OLD+N)/2+1, -1
-         SWAP = IX(J)
-         IX(J) = IX(P1)
-         IX(P1) = SWAP
-         P1 = P1 + 1
-       END DO
-       RETURN
-      END ! of RSORT
+        ! XOR with sign bit to make negative numbers sortable
+        ! This inverts the bit representation for negative numbers
+        transformed = IEOR(x, ISHFT(-1, BIT_SIZE(x)-1))
+    END FUNCTION transform_for_sort
 
 
-***********************************************************************
-*         test program
-***********************************************************************
-      PROGRAM t_sort
-       IMPLICIT NONE
-       INTEGER I, N
-       PARAMETER (N = 11)
-       INTEGER IX(N), IW(N)
-       LOGICAL OK
+    RECURSIVE SUBROUTINE msd_bit_sort_internal(arr, left, right, bit)
+        INTEGER, INTENT(INOUT) :: arr(:)
+        INTEGER, INTENT(IN) :: left, right, bit
+        INTEGER :: i, j, temp
+        INTEGER :: transformed_i, transformed_j
 
-       DATA IX / 2, 24, 45, 0, 66, 75, 170, -802, -90, 1066, 666 /
+        ! Base case
+        IF (left >= right .OR. bit < 0) RETURN
 
-       PRINT *, 'before: ', IX
-       CALL RSORT (IX, IW, N)
-       PRINT *, 'after: ', IX
+        i = left
+        j = right
 
-*              compare
-       OK = .TRUE.
-       DO I = 1, N-1
-         IF (IX(I) > IX(I+1)) OK = .FALSE.
-       END DO
-       IF (OK) THEN
-         PRINT *, 't_sort: successful test'
-       ELSE
-         PRINT *, 't_sort: failure!'
-       END IF
-      END ! of test program
+        DO WHILE (i <= j)
+            ! Find elements to swap
+            DO WHILE (i <= j)
+                transformed_i = transform_for_sort(arr(i))
+                transformed_j = transform_for_sort(arr(j))
+
+                ! Partition based on transformed values
+                IF (BTEST(transformed_i, bit) .AND. .NOT. BTEST(transformed_j, bit)) THEN
+                    ! Swap needed
+                    temp = arr(i)
+                    arr(i) = arr(j)
+                    arr(j) = temp
+                    EXIT
+                END IF
+
+                ! Move pointers
+                IF (.NOT. BTEST(transformed_i, bit)) i = i + 1
+                IF (BTEST(transformed_j, bit)) j = j - 1
+            END DO
+
+            ! Adjust pointers
+            IF (i < j) THEN
+                i = i + 1
+                j = j - 1
+            END IF
+        END DO
+
+        ! Recursively sort sub-arrays
+        IF (left < j) THEN
+            CALL msd_bit_sort_internal(arr, left, j, bit-1)
+        END IF
+        IF (i < right) THEN
+            CALL msd_bit_sort_internal(arr, i, right, bit-1)
+        END IF
+    END SUBROUTINE msd_bit_sort_internal
+
+    SUBROUTINE msd_bit_sort(arr)
+        INTEGER, INTENT(INOUT) :: arr(:)
+        INTEGER :: max_bit, n, mini, maxi
+
+        n = SIZE(arr)
+        IF (n < 2) RETURN
+
+        ! Find most significant bit
+        mini = MINVAL(arr)
+        maxi = MAXVAL(arr)
+        max_bit = MAX(BIT_SIZE(arr(1)) - LEADZ(IEOR(mini, maxi)) - 1, 0)
+
+        ! Perform the recursive bit sort
+        CALL msd_bit_sort_internal(arr, 1, n, max_bit)
+    END SUBROUTINE msd_bit_sort
+    end module msd_bit_sort_module
+!
+    program bit_sort_test_harness
+    use msd_bit_sort_module
+    implicit none
+
+    INTEGER, PARAMETER :: ARRAY_SIZE = 2**23
+    INTEGER :: test_array(ARRAY_SIZE)
+    real :: holder(ARRAY_SIZE)
+    INTEGER :: xx,yy,rate
+    call random_number(holder)
+    holder = holder -0.33333
+    test_array = int(holder*1000000.0)
+    ! Initialize with some test values
+
+    PRINT *, "Original Array:"
+    PRINT *, test_array(1:10)
+    call system_clock(count=xx,count_rate=rate)
+    CALL msd_bit_sort(test_array)
+    call system_clock(count=yy)
+    print*,'sort time = ',(real(yy-xx)/rate)
+    PRINT *, "Sorted Array:"
+    PRINT *, test_array(1:5),test_array(array_size-5:)
+
+end program bit_sort_test_harness

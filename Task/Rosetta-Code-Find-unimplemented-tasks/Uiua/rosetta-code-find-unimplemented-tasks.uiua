@@ -1,0 +1,20 @@
+Request ← $"GET _ HTTP/1.1\r\nHost: _\r\nUser-Agent: uiua/script\r\nAccept: */*\r\nConnection: close\r\n\r\n"
+Url  ← $"https://rosettacode.org/w/api.php?action=query&generator=categorymembers&gcmtitle=Category:_&format=json&gcmcontinue="
+
+GET ← (
+  ⍜⊜∘≡⋅"%20" ⊸⦷ " "
+  ⌝⊂"https://"        # Strip protocol.
+  ⊃(˜⊂":443"↙|↘)⊸˜⨂@/ # Split domain and path.# Append HTTPS port.
+  ⟜˜Request
+  ⍜&tlsc(&rs∞ ⊸&w⊃⋅∘∘)
+  ↘+4⊢⊚⊸⌕"\r\n\r\n" # Find body of response.
+)
+Next ← °□ get"gcmcontinue" °□get "continue"
+Save ← ˜⊂⊙◌≡⍚(get"title")◌°map°□ get "pages"°□ get "query"
+Cont ← ⍥(°□⊡1⊜□¬⊸⦷"\r\n")≠@{⊸⊢ # Ignore odd lines that get added in.
+Get  ← °json Cont GET
+Grab ← ◌◌⍢(Get ⊸&p ⊸˜⊂ Next ⟜₂Save|has "continue")Get⤚$"__" ⊙"" ⊙{}
+
+Grab Url "Uiua"
+Grab Url "Programming_Tasks"
+≡◇&p▽¬⤚˜∊ # Find and show the difference.

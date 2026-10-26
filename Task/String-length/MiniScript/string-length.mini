@@ -1,0 +1,22 @@
+import "utf8"
+import "grapheme"
+
+CLL = char(818)  // combining low line
+CAA = char(769)  // combining acute accent
+jose = "J" + CLL + "o" + CLL + "s" + CLL + "e" + CAA + CLL
+tests = ["møøse", "𝔘𝔫𝔦𝔠𝔬𝔡𝔢", jose]
+
+print "===Character Length==="
+for test in tests
+    print test.len
+end for
+print
+print "===Byte Length==="
+for test in tests
+    print utf8.len(test)
+end for
+print
+print "===Grapheme Length==="
+for test in tests
+    print test.graphemes.len
+end for
